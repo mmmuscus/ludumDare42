@@ -13,15 +13,19 @@ public class DragScript : MonoBehaviour
 	private GameObject[] OFB;
 	private Collider2D[] OFBC;
 	private Collider2D ThisCollider;
+	private Rigidbody2D ThisRigidbody;
 
 	public void SetBackToSpawnPosition()
 	{
 		transform.position = new Vector3 (StartXPosition, StartYPosition, 0f);
+		ThisRigidbody.isKinematic = true;
+		ThisRigidbody.velocity = new Vector2 (0f, 0f);
 	}
 
 	void Start()
 	{
 		ThisCollider = this.GetComponent<Collider2D>();
+		ThisRigidbody = this.GetComponent<Rigidbody2D>();
 
 		if (OFB == null)
 		{
@@ -34,6 +38,8 @@ public class DragScript : MonoBehaviour
 		{
 			OFBC[i] = OFB[i].GetComponent<Collider2D>();
 		}
+
+		SetBackToSpawnPosition();
 	}
 
     void OnMouseDown()
@@ -53,6 +59,12 @@ public class DragScript : MonoBehaviour
 			{
 				SetBackToSpawnPosition();
 			}
+		}
+
+		if (transform.position != new Vector3 (StartXPosition, StartYPosition, 0f))
+		{
+			ThisRigidbody.isKinematic = false;
+			ThisRigidbody.velocity = new Vector2 (0f, 0f);
 		}
 
 		ThisCollider.isTrigger = false;
