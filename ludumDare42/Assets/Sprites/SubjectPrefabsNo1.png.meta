@@ -1,7 +1,39 @@
 fileFormatVersion: 2
 guid: c3f34ce41a04b05439ac26e61777287a
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: SubjectPrefabsNo1_0
+    21300002: SubjectPrefabsNo1_1
+    21300004: SubjectPrefabsNo1_2
+    21300006: SubjectPrefabsNo1_3
+    21300008: SubjectPrefabsNo1_4
+    21300010: SubjectPrefabsNo1_5
+    21300012: SubjectPrefabsNo1_6
+    21300014: SubjectPrefabsNo1_7
+    21300016: SubjectPrefabsNo1_8
+    21300018: SubjectPrefabsNo1_9
+    21300020: SubjectPrefabsNo1_10
+    21300022: SubjectPrefabsNo1_11
+    21300024: SubjectPrefabsNo1_12
+    21300026: SubjectPrefabsNo1_13
+    21300028: SubjectPrefabsNo1_14
+    21300030: SubjectPrefabsNo1_15
+    21300032: SubjectPrefabsNo1_16
+    21300034: SubjectPrefabsNo1_17
+    21300036: SubjectPrefabsNo1_18
+    21300038: SubjectPrefabsNo1_19
+    21300040: SubjectPrefabsNo1_20
+    21300042: SubjectPrefabsNo1_21
+    21300044: SubjectPrefabsNo1_22
+    21300046: SubjectPrefabsNo1_23
+    21300048: SubjectPrefabsNo1_24
+    21300050: SubjectPrefabsNo1_25
+    21300052: SubjectPrefabsNo1_26
+    21300054: SubjectPrefabsNo1_27
+    21300056: SubjectPrefabsNo1_28
+    21300058: SubjectPrefabsNo1_29
+    21300060: SubjectPrefabsNo1_30
+    21300062: SubjectPrefabsNo1_31
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -31,7 +63,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 0
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -40,7 +72,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -63,7 +95,51 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -71,7 +147,647 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: SubjectPrefabsNo1_0
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 5611
+        width: 1103
+        height: 1357
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57a12389bdc862e42a957120b9f4fdfe
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SubjectPrefabsNo1_1
+      rect:
+        serializedVersion: 2
+        x: 1487
+        y: 5605
+        width: 1308
+        height: 1271
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bb1ab077ac793f4299bba847d42a448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SubjectPrefabsNo1_2
+      rect:
+        serializedVersion: 2
+        x: 2980
+        y: 6865
+        width: 21
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a4be40782ee36346b5b24a5e8242b41
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SubjectPrefabsNo1_3
+      rect:
+        serializedVersion: 2
+        x: 2977
+        y: 6841
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 156994256caacf044a3de7892a3143a1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SubjectPrefabsNo1_4
+      rect:
+        serializedVersion: 2
+        x: 2963
+        y: 5701
+        width: 1168
+        height: 1133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf8d56ac93cb92942873b3a97572f1e0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SubjectPrefabsNo1_5
+      rect:
+        serializedVersion: 2
+        x: 966
+        y: 5457
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5df07cfd6603d440a0d654ffec9b63d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SubjectPrefabsNo1_6
+      rect:
+        serializedVersion: 2
+        x: 1463
+        y: 4245
+        width: 1233
+        height: 1257
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90c60c9a3441b8a468825949c883c8a4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SubjectPrefabsNo1_7
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 4186
+        width: 1319
+        height: 1264
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4afc185b9424624ca389d9c61675aa5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SubjectPrefabsNo1_8
+      rect:
+        serializedVersion: 2
+        x: 2984
+        y: 4265
+        width: 1068
+        height: 1120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc5f3de1dba3ef640a6c88b2295e92cf
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SubjectPrefabsNo1_9
+      rect:
+        serializedVersion: 2
+        x: 4042
+        y: 5348
+        width: 17
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4095b5bb8e40fbb4398ed87c0fa1351b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SubjectPrefabsNo1_10
+      rect:
+        serializedVersion: 2
+        x: 2692
+        y: 4443
+        width: 7
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a368db834aa34b949937392a68f08b93
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SubjectPrefabsNo1_11
+      rect:
+        serializedVersion: 2
+        x: 3175
+        y: 4262
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45f81f3497d102b4a8588a9716f52d34
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SubjectPrefabsNo1_12
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 4155
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7791f12981b51ea4f92c73222d39bc81
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SubjectPrefabsNo1_13
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 4131
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8deedf6c72dc66b40b739f140ffbf7fa
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SubjectPrefabsNo1_14
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 4131
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75e050c409d4c7c4a9b2e1ee8a27eb28
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SubjectPrefabsNo1_15
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 3998
+        width: 17
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ca6941b58c868e4db1adcb18b0c426d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SubjectPrefabsNo1_16
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 2850
+        width: 1220
+        height: 1213
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4dbfb5210b3f4c3418c521175effea37
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SubjectPrefabsNo1_17
+      rect:
+        serializedVersion: 2
+        x: 1535
+        y: 2891
+        width: 1175
+        height: 1213
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b8f1b916399cb645bd701f84850132e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SubjectPrefabsNo1_18
+      rect:
+        serializedVersion: 2
+        x: 1524
+        y: 3515
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c016d034fddca941836f09a30302d25
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SubjectPrefabsNo1_19
+      rect:
+        serializedVersion: 2
+        x: 2960
+        y: 2912
+        width: 1243
+        height: 1058
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 105cbe7a38c42b74da3d82f0a5a6b11a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SubjectPrefabsNo1_20
+      rect:
+        serializedVersion: 2
+        x: 1504
+        y: 3491
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5179588b7e743cf40a4617d2a342e992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SubjectPrefabsNo1_21
+      rect:
+        serializedVersion: 2
+        x: 1517
+        y: 3470
+        width: 28
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d27536a8e22c1424e92974b48c8dca2e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SubjectPrefabsNo1_22
+      rect:
+        serializedVersion: 2
+        x: 1524
+        y: 3457
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e4e8f4743ce8f14c861d9f2e18354a5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SubjectPrefabsNo1_23
+      rect:
+        serializedVersion: 2
+        x: 712
+        y: 2789
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 188818df870509b4a9910bf6cadcb883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SubjectPrefabsNo1_24
+      rect:
+        serializedVersion: 2
+        x: 723
+        y: 2778
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05bb4564d1281244d94a79159ea214e6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SubjectPrefabsNo1_25
+      rect:
+        serializedVersion: 2
+        x: 740
+        y: 2768
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 083b55a50c9497a4b80f9aca719f57cc
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SubjectPrefabsNo1_26
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 1370
+        width: 1137
+        height: 1285
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6844ae523ade2bf4e979cd73dde0dbe1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SubjectPrefabsNo1_27
+      rect:
+        serializedVersion: 2
+        x: 1497
+        y: 1394
+        width: 1209
+        height: 1141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dff86e4b10e4fb94a88709839d57c883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SubjectPrefabsNo1_28
+      rect:
+        serializedVersion: 2
+        x: 2980
+        y: 1614
+        width: 1185
+        height: 1106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3d8d094d3c9cd9468f499f7c7a732a9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SubjectPrefabsNo1_29
+      rect:
+        serializedVersion: 2
+        x: 3847
+        y: 1542
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 424f5184c0005a94d996230f5ec9bedb
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SubjectPrefabsNo1_30
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 1141
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 492dd25453713494c9467bb1748d5f87
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SubjectPrefabsNo1_31
+      rect:
+        serializedVersion: 2
+        x: 767
+        y: 1141
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fbda2a1a2553684cae7721554e04a48
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
