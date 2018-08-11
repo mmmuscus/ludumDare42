@@ -76,23 +76,7 @@ public class DragScript : MonoBehaviour
 			if (ThisCollider.IsTouching(other))
 			{
 				SetBackToSpawnPosition();
-				WasInOFBC = true;
 			}
-		}
-
-		if (!WasInOFBC)
-		{
-			foreach (Collider2D other in OFPC)
-			{
-				if (ThisCollider.IsTouching(other))
-				{
-					Debug.Log("things happen");
-				}
-			}
-		}
-		else
-		{
-			WasInOFBC = false;
 		}
 
 		if (transform.position != new Vector3 (StartXPosition, StartYPosition, 0f))
