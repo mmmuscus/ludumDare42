@@ -14,17 +14,9 @@ public class DragScript : MonoBehaviour
 	private Collider2D[] OFBC;
 	private GameObject[] OFP;
 	private Collider2D[] OFPC;
-	private Collider2D ThisCollider;
+	private PolygonCollider2D ThisCollider;
 	private Rigidbody2D ThisRigidbody;
-
-	public GameObject Indicator;
-	private GameObject IndicatorHandle;
-	private bool InstantAlive = false;
-	private bool InOFBC = false;
-	private bool InOFPC = false;
-	private float LastX;
-	private float LastY;
-
+	
 	public void SetBackToSpawnPosition()
 	{
 		transform.position = new Vector3 (StartXPosition, StartYPosition, 0f);
@@ -42,7 +34,7 @@ public class DragScript : MonoBehaviour
 
 	void Start()
 	{
-		ThisCollider = this.GetComponent<Collider2D>();
+		ThisCollider = this.GetComponent<PolygonCollider2D>();
 		ThisRigidbody = this.GetComponent<Rigidbody2D>();
 
 		OFB = GameObject.FindGameObjectsWithTag("OFB");
@@ -77,12 +69,6 @@ public class DragScript : MonoBehaviour
     {
         dragging = false;
 
-		if (InstantAlive)
-		{
-			Destroy(IndicatorHandle);
-			InstantAlive = false;
-		}
-
 		foreach (Collider2D other in OFBC)
 		{
 			if (ThisCollider.IsTouching(other))
@@ -107,54 +93,6 @@ public class DragScript : MonoBehaviour
 	        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
    	        Vector3 rayPoint = ray.GetPoint(distance);
 	        transform.position = rayPoint;
-
-			//Indicator stuff
-			InOFBC = false;
-			InOFPC = false;
-
-			foreach (Collider2D other in OFBC)
-			{
-				if (ThisCollider.IsTouching(other))
-				{
-					InOFBC = true;
-				}
-			}
-
-			foreach (Collider2D other in OFPC)
-			{
-				if (ThisCollider.IsTouching(other))
-				{
-					InOFPC = true;
-				}
-			}
-
-			if (!InOFBC && !InOFPC && InstantAlive)
-			{
-				Destroy(IndicatorHandle);
-				InstantAlive = false;
-			}
-
-			if (InOFBC && InstantAlive)
-			{
-				Destroy(IndicatorHandle);
-				InstantAlive = false;
-			}
-
-			if (InOFPC && !InOFBC)
-			{
-				if (LastX != transform.position.x || LastY != transform.position.y)
-				{
-					if (InstantAlive)
-					{
-						Destroy(IndicatorHandle);
-					}
-					IndicatorHandle = Instantiate(Indicator, new Vector3 (transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
-					InstantAlive = true;
-				}
-			}
         }
-
-		LastX = transform.position.x;
-		LastY = transform.position.y;
     }
 }
