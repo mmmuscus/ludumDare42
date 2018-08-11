@@ -6,6 +6,9 @@ TagManager:
   tags:
   - OFB
   - Subject
+  - OFP
+  - PushingWalls
+  - Indicator
   layers:
   - Default
   - TransparentFX
@@ -45,6 +48,9 @@ TagManager:
     locked: 0
   - name: Background
     uniqueID: 2268245519
+    locked: 0
+  - name: SubjectIndicator
+    uniqueID: 570412793
     locked: 0
   - name: Subjects
     uniqueID: 495620711

@@ -12,14 +12,26 @@ public class DragScript : MonoBehaviour
 
 	private GameObject[] OFB;
 	private Collider2D[] OFBC;
+	private GameObject[] OFP;
+	private Collider2D[] OFPC;
 	private Collider2D ThisCollider;
 	private Rigidbody2D ThisRigidbody;
+
+	private bool WasInOFBC = false;
 
 	public void SetBackToSpawnPosition()
 	{
 		transform.position = new Vector3 (StartXPosition, StartYPosition, 0f);
 		ThisRigidbody.isKinematic = true;
+		SetBackToNormalStance();
+	}
+
+	public void SetBackToNormalStance()
+	{
 		ThisRigidbody.velocity = new Vector2 (0f, 0f);
+		ThisRigidbody.freezeRotation = true;
+		transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+		ThisRigidbody.freezeRotation = false;
 	}
 
 	void Start()
@@ -27,16 +39,20 @@ public class DragScript : MonoBehaviour
 		ThisCollider = this.GetComponent<Collider2D>();
 		ThisRigidbody = this.GetComponent<Rigidbody2D>();
 
-		if (OFB == null)
-		{
-			OFB = GameObject.FindGameObjectsWithTag("OFB");
-		}
+		OFB = GameObject.FindGameObjectsWithTag("OFB");
+		OFP = GameObject.FindGameObjectsWithTag("OFP");
 
 		OFBC = new Collider2D[OFB.Length];
+		OFPC = new Collider2D[OFP.Length];
 
 		for (int i = 0; i < OFB.Length; i++)
 		{
 			OFBC[i] = OFB[i].GetComponent<Collider2D>();
+		}
+
+		for (int i = 0; i < OFP.Length; i++)
+		{
+			OFPC[i] = OFP[i].GetComponent<Collider2D>();
 		}
 
 		SetBackToSpawnPosition();
@@ -47,6 +63,8 @@ public class DragScript : MonoBehaviour
         distance = Vector3.Distance(transform.position, Camera.main.transform.position);
 		dragging = true;
 		ThisCollider.isTrigger = true;
+
+		SetBackToNormalStance();
     }
  
     void OnMouseUp()
@@ -58,7 +76,23 @@ public class DragScript : MonoBehaviour
 			if (ThisCollider.IsTouching(other))
 			{
 				SetBackToSpawnPosition();
+				WasInOFBC = true;
 			}
+		}
+
+		if (!WasInOFBC)
+		{
+			foreach (Collider2D other in OFPC)
+			{
+				if (ThisCollider.IsTouching(other))
+				{
+					Debug.Log("things happen");
+				}
+			}
+		}
+		else
+		{
+			WasInOFBC = false;
 		}
 
 		if (transform.position != new Vector3 (StartXPosition, StartYPosition, 0f))
@@ -74,9 +108,9 @@ public class DragScript : MonoBehaviour
     {
         if (dragging)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            Vector3 rayPoint = ray.GetPoint(distance);
-            transform.position = rayPoint;
+	        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+   	        Vector3 rayPoint = ray.GetPoint(distance);
+	        transform.position = rayPoint;
         }
     }
 }

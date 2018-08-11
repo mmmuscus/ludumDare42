@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 85168180}
   m_Layer: 2
   m_Name: OFB3
-  m_TagString: OFB
+  m_TagString: OFP
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 150821113}
   m_Layer: 2
   m_Name: Week
-  m_TagString: Untagged
+  m_TagString: OFB
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -309,7 +309,7 @@ GameObject:
   - component: {fileID: 431241088}
   m_Layer: 2
   m_Name: OFB1
-  m_TagString: OFB
+  m_TagString: OFP
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -352,6 +352,60 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.0008469, y: 7.4322033}
   m_EdgeRadius: 0
+--- !u!1 &706237364
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 706237365}
+  - component: {fileID: 706237366}
+  m_Layer: 0
+  m_Name: OFB5
+  m_TagString: OFP
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &706237365
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 706237364}
+  m_LocalRotation: {x: -0, y: -0, z: 0.30732548, w: 0.95160455}
+  m_LocalPosition: {x: -3.925, y: 3.407, z: -0.04396689}
+  m_LocalScale: {x: 0.83333325, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1891946812}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 35.796}
+--- !u!61 &706237366
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 706237364}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 5, y: 3}
+  m_EdgeRadius: 0
 --- !u!1 &1491202879
 GameObject:
   m_ObjectHideFlags: 0
@@ -363,7 +417,7 @@ GameObject:
   - component: {fileID: 1491202880}
   m_Layer: 2
   m_Name: OFB4
-  m_TagString: OFB
+  m_TagString: OFP
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -391,7 +445,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 10.017246, y: 0.80015945}
+  m_Size: {x: 10.017246, y: 0.8001595}
   m_EdgeRadius: 0
 --- !u!4 &1491202881
 Transform:
@@ -415,9 +469,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1699351068}
   - component: {fileID: 1699351067}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Subjects
-  m_TagString: Untagged
+  m_TagString: OFB
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -469,9 +523,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1810472298}
   - component: {fileID: 1810472297}
-  - component: {fileID: 1810472299}
   - component: {fileID: 1810472300}
   - component: {fileID: 1810472301}
+  - component: {fileID: 1810472299}
   m_Layer: 0
   m_Name: TestSubject
   m_TagString: Subject
@@ -512,7 +566,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 495620711
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 87bcffae4b3af3d4693b63be82089f01, type: 3}
   m_Color: {r: 0.40392157, g: 0.63529414, b: 0.45216456, a: 1}
@@ -626,6 +680,7 @@ Transform:
   - {fileID: 1903290821}
   - {fileID: 85168181}
   - {fileID: 1491202881}
+  - {fileID: 706237365}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -686,7 +741,7 @@ GameObject:
   - component: {fileID: 1903290820}
   m_Layer: 2
   m_Name: OFB2
-  m_TagString: OFB
+  m_TagString: OFP
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
