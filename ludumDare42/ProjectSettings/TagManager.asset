@@ -9,6 +9,7 @@ TagManager:
   - OFP
   - PushingWalls
   - Indicator
+  - Brain
   layers:
   - Default
   - TransparentFX
@@ -18,9 +19,9 @@ TagManager:
   - UI
   - 
   - 
+  - Indicator
   - 
-  - 
-  - 
+  - Subject
   - 
   - 
   - 

@@ -685,7 +685,7 @@ GameObject:
   m_Component:
   - component: {fileID: 706237365}
   - component: {fileID: 706237366}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: OFB5
   m_TagString: OFP
   m_Icon: {fileID: 0}
@@ -739,7 +739,7 @@ GameObject:
   m_Component:
   - component: {fileID: 860595339}
   - component: {fileID: 860595340}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: OFB10
   m_TagString: OFP
   m_Icon: {fileID: 0}
@@ -793,7 +793,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1030920232}
   - component: {fileID: 1030920233}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: OFB8
   m_TagString: OFP
   m_Icon: {fileID: 0}
@@ -901,7 +901,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1271224161}
   - component: {fileID: 1271224162}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: OFB9
   m_TagString: OFP
   m_Icon: {fileID: 0}
@@ -1009,7 +1009,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1537112364}
   - component: {fileID: 1537112365}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: OFB7
   m_TagString: OFP
   m_Icon: {fileID: 0}
@@ -1063,7 +1063,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1546032360}
   - component: {fileID: 1546032361}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: OFB6
   m_TagString: OFP
   m_Icon: {fileID: 0}
@@ -1228,7 +1228,7 @@ GameObject:
   - component: {fileID: 1810472300}
   - component: {fileID: 1810472301}
   - component: {fileID: 1810472299}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: TestSubject
   m_TagString: Subject
   m_Icon: {fileID: 0}
@@ -1307,6 +1307,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartXPosition: -5
   StartYPosition: 0
+  Indicator: {fileID: 1308941392769368, guid: 9a84dcdca669cb648b6e5fe887866d94, type: 2}
 --- !u!61 &1810472300
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1361,7 +1362,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1891946812}
   - component: {fileID: 1891946813}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Brain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
