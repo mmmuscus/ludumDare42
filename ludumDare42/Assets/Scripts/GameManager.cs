@@ -43,7 +43,6 @@ public class GameManager : MonoBehaviour
 	private bool isGame = false;
 	private bool isIntro = true;
 	private bool isIntermission = false;
-	private bool isRetrunPressedInGameThisFrame = false;
 	private GameObject[] SpaceLessons;
 
 	public GameObject[] LessonList;
@@ -507,7 +506,7 @@ public class GameManager : MonoBehaviour
 		{
 			CurTime += Time.deltaTime;
 
-			if ((CurTime >= WeekendTime && CurDay == 1) || (CurTime >= WeekTime && CurDay != 1) || (Input.GetKeyDown(KeyCode.Return)))
+			if ((CurTime >= WeekendTime && CurDay == 1) || (CurTime >= WeekTime && CurDay != 1) || (Input.GetKeyDown(KeyCode.S)))
 			{
 				EndOfDay(CurDay);
 				CurDay++;
@@ -517,11 +516,6 @@ public class GameManager : MonoBehaviour
 				}
 
 				CurTime = 0f;
-
-				if (Input.GetKeyDown(KeyCode.Return))
-				{
-					isRetrunPressedInGameThisFrame = true;
-				}
 			}
 
 			if (Input.GetKeyDown(KeyCode.Space))
@@ -536,7 +530,7 @@ public class GameManager : MonoBehaviour
 
 		if (isIntro)
 		{
-			if (Input.GetKeyDown(KeyCode.Return) && !isRetrunPressedInGameThisFrame)
+			if (Input.GetKeyDown(KeyCode.Space))
 			{
 				StartNewGame();
 			}
@@ -544,7 +538,7 @@ public class GameManager : MonoBehaviour
 
 		if (isGameOver)
 		{
-			if (Input.GetKeyDown(KeyCode.Return) && !isRetrunPressedInGameThisFrame)
+			if (Input.GetKeyDown(KeyCode.Space))
 			{
 				StartNewGame();
 			}
@@ -552,14 +546,12 @@ public class GameManager : MonoBehaviour
 
 		if (isIntermission)
 		{
-			if (Input.GetKeyDown(KeyCode.Return) && !isRetrunPressedInGameThisFrame)
+			if (Input.GetKeyDown(KeyCode.Space))
 			{
 				isIntermission = false;
 				isGame = true;
 				Debug.Log("End of intermission!");
 			}
 		}
-
-		isRetrunPressedInGameThisFrame = false;
 	}
 }

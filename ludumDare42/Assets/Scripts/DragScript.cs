@@ -90,21 +90,13 @@ public class DragScript : MonoBehaviour
 			}
 		}
 
-		// PCCounter = 0;
-
 		foreach (PolygonCollider2D other in PCC)
 		{
 			if (ThisCollider.IsTouching(other))
 			{
-				// PCCounter++;
 				SetBackToSpawnPosition();
 			}
 		}
-
-		// if (PCCounter >= 2)
-		// {
-		// 	SetBackToSpawnPosition();
-		// }
 
 		if (transform.position != new Vector3 (StartXPosition, StartYPosition, 0f))
 		{
@@ -122,6 +114,16 @@ public class DragScript : MonoBehaviour
 	        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
    	        Vector3 rayPoint = ray.GetPoint(distance);
 	        transform.position = rayPoint;
+
+			if (Input.GetKey(KeyCode.A)) 
+			{
+        		transform.Rotate(Vector3.forward * 3f);
+			}
+
+			if (Input.GetKey(KeyCode.D)) 
+			{
+       			transform.Rotate(Vector3.back * 3f);
+    		}
         }
     }
 
