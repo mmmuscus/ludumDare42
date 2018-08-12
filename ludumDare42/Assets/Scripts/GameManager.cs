@@ -320,7 +320,7 @@ public class GameManager : MonoBehaviour
 
 			for (int i = 0; i < 15; i++)
 			{
-				LessonHandle = Instantiate(LessonList[Random.Range(0, 23)], new Vector3(Column, (3.5f - (i * 0.5f)), 0f), Quaternion.identity);
+				LessonHandle = Instantiate(LessonList[Random.Range(0, 23)], new Vector3(Column, (3.5f - (i * 0.5f)), 15 - i), Quaternion.identity);
 				LessonHandle.GetComponent<DragScript>().StartXPosition = Column;
 				LessonHandle.GetComponent<DragScript>().StartYPosition = 3.5f - (i * 0.5f);
 				LessonHandle.GetComponent<SpriteRenderer>().sortingOrder = i;

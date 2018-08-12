@@ -5,6 +5,8 @@ using UnityEngine;
 public class DragScript : MonoBehaviour
 {
     private bool dragging = false;
+	public bool PublicDragging = false;
+	private bool CanBeDragged = false;
     private float distance;
 
 	public float StartXPosition = -0f;
@@ -17,6 +19,8 @@ public class DragScript : MonoBehaviour
 	private Collider2D[] OFPC;
 	private GameObject[] PC;
 	private PolygonCollider2D[] PCC;
+	private DragScript[] PCS;
+	private SpriteRenderer[] PCR;
 	private int PCCounter = 0;
 	private PolygonCollider2D ThisCollider;
 	private Rigidbody2D ThisRigidbody;
@@ -26,7 +30,6 @@ public class DragScript : MonoBehaviour
 		transform.position = new Vector3 (StartXPosition, StartYPosition, 0f);
 		ThisRigidbody.isKinematic = true;
 		SetBackToNormalStance();
-		transform.rotation = Quaternion.Euler(0f, 0f, 0f);
 	}
 
 	public void SetBackToNormalStance()
@@ -48,6 +51,8 @@ public class DragScript : MonoBehaviour
 		OFBC = new Collider2D[OFB.Length];
 		OFPC = new Collider2D[OFP.Length];
 		PCC = new PolygonCollider2D[PC.Length];
+		PCR = new SpriteRenderer[PC.Length];
+		PCS = new DragScript[PC.Length];
 
 		for (int i = 0; i < OFB.Length; i++)
 		{
@@ -64,6 +69,16 @@ public class DragScript : MonoBehaviour
 			PCC[i] = PC[i].GetComponent<PolygonCollider2D>();
 		}
 
+		for (int i = 0; i < PC.Length; i++)
+		{
+			PCR[i] = PC[i].GetComponent<SpriteRenderer>();
+		}
+
+		for (int i = 0; i < PC.Length; i++)
+		{
+			PCS[i] = PC[i].GetComponent<DragScript>();
+		}
+
 		SetColour();
 
 		SetBackToSpawnPosition();
@@ -72,7 +87,11 @@ public class DragScript : MonoBehaviour
     void OnMouseDown()
     {
         distance = Vector3.Distance(transform.position, Camera.main.transform.position);
+
 		dragging = true;
+		PublicDragging = true;
+		CanBeDragged = true;
+
 		ThisCollider.isTrigger = true;
 
 		SetBackToNormalStance();
@@ -81,6 +100,7 @@ public class DragScript : MonoBehaviour
     void OnMouseUp()
     {
         dragging = false;
+		PublicDragging = false;
 
 		foreach (Collider2D other in OFBC)
 		{
@@ -109,27 +129,37 @@ public class DragScript : MonoBehaviour
  
     void Update()
     {
-        if (dragging)
+        if (dragging && CanBeDragged)
         {
-	        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-   	        Vector3 rayPoint = ray.GetPoint(distance);
-	        transform.position = rayPoint;
-
-			if (Input.GetKey(KeyCode.A)) 
+			for (int i = 0; i < PCS.Length; i++)
 			{
-        		transform.Rotate(Vector3.forward * 3f);
+				if (PCS[i].PublicDragging && (PCR[i].sortingOrder < this.GetComponent<SpriteRenderer>().sortingOrder))
+				{
+					CanBeDragged = false;
+				}
 			}
 
-			if (Input.GetKey(KeyCode.D)) 
+			if (CanBeDragged)
 			{
-       			transform.Rotate(Vector3.back * 3f);
-    		}
+				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+				Vector3 rayPoint = ray.GetPoint(distance);
+	    		transform.position = rayPoint;
+
+				if (Input.GetKey(KeyCode.A)) 
+				{
+   			    	transform.Rotate(Vector3.forward * 3f);
+				}
+
+				if (Input.GetKey(KeyCode.D)) 
+				{
+   	    			transform.Rotate(Vector3.back * 3f);
+   		 		}
+			}
         }
     }
 
 	void SetColour ()
 	{
-		Debug.Log("in color");
 		if (SubjectType == 1)
 		{
 			this.GetComponent<SpriteRenderer>().color = new Color(1f, .125f, 0f, 1f);
