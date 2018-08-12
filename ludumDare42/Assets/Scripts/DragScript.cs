@@ -23,13 +23,13 @@ public class DragScript : MonoBehaviour
 		transform.position = new Vector3 (StartXPosition, StartYPosition, 0f);
 		ThisRigidbody.isKinematic = true;
 		SetBackToNormalStance();
+		transform.rotation = Quaternion.Euler(0f, 0f, 0f);
 	}
 
 	public void SetBackToNormalStance()
 	{
 		ThisRigidbody.velocity = new Vector2 (0f, 0f);
 		ThisRigidbody.freezeRotation = true;
-		transform.rotation = Quaternion.Euler(0f, 0f, 0f);
 		ThisRigidbody.freezeRotation = false;
 	}
 
@@ -118,7 +118,7 @@ public class DragScript : MonoBehaviour
 
 		if (SubjectType == 4)
 		{
-			this.GetComponent<SpriteRenderer>().color = new Color(0f, .694f, 0f, 1f);
+			this.GetComponent<SpriteRenderer>().color = new Color(0f, .8f, 0f, 1f);
 		}
 
 		if (SubjectType == 5)
@@ -128,7 +128,7 @@ public class DragScript : MonoBehaviour
 
 		if (SubjectType == 6)
 		{
-			this.GetComponent<SpriteRenderer>().color = new Color(.007f, .721f, .004f, 1f);
+			this.GetComponent<SpriteRenderer>().color = new Color(.004f, .686f, .784f, 1f);
 		}
 
 		if (SubjectType == 7)
