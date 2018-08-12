@@ -1244,15 +1244,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LessonList:
-  - {fileID: 1743924050842896, guid: 58f78cca6087b9d42b4454bb31352a48, type: 2}
-  - {fileID: 1813298839688510, guid: 7507be821d3dca34bbc48cc9993fade0, type: 2}
-  - {fileID: 1308321555927546, guid: 2a5a528ec758e154981842a20812b50b, type: 2}
-  - {fileID: 1576592840413272, guid: 197ca514aabd23344a5349f29e8384f2, type: 2}
-  - {fileID: 1021748290909078, guid: 8d51ba1580b735146ba6ebc7fa188fe8, type: 2}
-  - {fileID: 1869801586941144, guid: b1e00526b391e9440bc3f0c06d333a30, type: 2}
-  - {fileID: 1367152000134808, guid: 32965bc9203e8614383bc0fabf782fc4, type: 2}
-  - {fileID: 1754379788453948, guid: ed8a4b6390d948d4eb49f384141a8e1c, type: 2}
-  - {fileID: 1714975779837268, guid: 3187fc01b6a95c446b56c09be8768000, type: 2}
+  - {fileID: 1859540412954422, guid: 74a82bf4036df894db7a4744741da833, type: 2}
+  - {fileID: 1146535989964030, guid: 05d54fc5cd6a5b849a2416c5063025b3, type: 2}
+  - {fileID: 1175279123974896, guid: 8095533c51ccb4d40bf5741f0a4c06b4, type: 2}
+  - {fileID: 1056639909236774, guid: 0860e7a98cbb2ef4ca3eb060362dfc81, type: 2}
+  - {fileID: 1186781027664450, guid: a9c6ee7598b8ec14781abb1536f85f78, type: 2}
+  - {fileID: 1364294584911826, guid: 4dc897a8680fb5c40bc52397efc28f9a, type: 2}
+  - {fileID: 1074351341549140, guid: 3709a646c451d314880e06c27835b61b, type: 2}
+  - {fileID: 1622307829035526, guid: e8fc0f598a0bb0a48aa228fdfb764771, type: 2}
+  - {fileID: 1436834098612226, guid: 778693af758598d4c95e63cd09d8eb8f, type: 2}
   - {fileID: 1985783309877310, guid: 6a6585976b5406748a3cd55dd26de070, type: 2}
   - {fileID: 1703246331992276, guid: 58578fa0c23a1a34fa2be317fb2ec9ba, type: 2}
   - {fileID: 1261704400299624, guid: 65628736e42c7794b95c2dbe15610adc, type: 2}
@@ -1266,7 +1266,7 @@ MonoBehaviour:
   - {fileID: 1673949554677238, guid: 83a901088360d874c979a59220dca5b5, type: 2}
   - {fileID: 1301892462065094, guid: 3ce1f0bce51db9a4a824cb564abee9b4, type: 2}
   - {fileID: 1192239177663854, guid: 0e948eb6b29c13c4f8b0e337cb6fc8a9, type: 2}
-  - {fileID: 1556975625789990, guid: 261dd21be40fbf84c9e62ae118d0dbb3, type: 2}
+  - {fileID: 1897412424467210, guid: fd05e68e21b5958409cb29fcb10d1392, type: 2}
   - {fileID: 1654597307169722, guid: 393cf73d2048fac41ae30aaf10618914, type: 2}
 --- !u!4 &1871815992
 Transform:

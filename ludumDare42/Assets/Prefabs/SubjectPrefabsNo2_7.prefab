@@ -30,6 +30,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1147294075454556
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4317967764951242}
+  - component: {fileID: 60734121446934532}
+  m_Layer: 0
+  m_Name: PushCollider
+  m_TagString: PC
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &4249237565643882
 Transform:
   m_ObjectHideFlags: 1
@@ -39,8 +55,22 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5, y: 0, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4317967764951242}
   m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4317967764951242
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1147294075454556}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.0017125953}
+  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4249237565643882}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &50593027271070884
@@ -135,6 +165,40 @@ PolygonCollider2D:
       - {x: 4.5097284, y: -4.772955}
       - {x: 4.8423476, y: -4.55332}
       - {x: 4.9818797, y: -4.389864}
+--- !u!60 &60734121446934532
+PolygonCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1147294075454556}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.8421521, y: -0.8426716}
+      - {x: 0.62061024, y: 0.17367998}
+      - {x: 1.0134251, y: 0.63549495}
+      - {x: 0.76204205, y: 0.92601126}
+      - {x: 0.010752678, y: 0.72703284}
+      - {x: -0.7010703, y: 0.8388476}
+      - {x: -0.875813, y: 0.43899927}
+      - {x: -0.30020857, y: 0.021180041}
+      - {x: -0.1777296, y: -0.23086996}
+      - {x: 0.6604333, y: -0.90781707}
 --- !u!114 &114735061053252524
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -148,6 +212,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartXPosition: -5
   StartYPosition: 0
+  SubjectType: 0
 --- !u!212 &212903615319739304
 SpriteRenderer:
   m_ObjectHideFlags: 1

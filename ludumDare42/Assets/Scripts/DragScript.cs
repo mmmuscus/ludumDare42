@@ -15,6 +15,9 @@ public class DragScript : MonoBehaviour
 	private Collider2D[] OFBC;
 	private GameObject[] OFP;
 	private Collider2D[] OFPC;
+	private GameObject[] PC;
+	private PolygonCollider2D[] PCC;
+	private int PCCounter = 0;
 	private PolygonCollider2D ThisCollider;
 	private Rigidbody2D ThisRigidbody;
 	
@@ -40,9 +43,11 @@ public class DragScript : MonoBehaviour
 
 		OFB = GameObject.FindGameObjectsWithTag("OFB");
 		OFP = GameObject.FindGameObjectsWithTag("OFP");
+		PC = GameObject.FindGameObjectsWithTag("Subject");
 
 		OFBC = new Collider2D[OFB.Length];
 		OFPC = new Collider2D[OFP.Length];
+		PCC = new PolygonCollider2D[PC.Length];
 
 		for (int i = 0; i < OFB.Length; i++)
 		{
@@ -52,6 +57,11 @@ public class DragScript : MonoBehaviour
 		for (int i = 0; i < OFP.Length; i++)
 		{
 			OFPC[i] = OFP[i].GetComponent<Collider2D>();
+		}
+
+		for (int i = 0; i < PC.Length; i++)
+		{
+			PCC[i] = PC[i].GetComponent<PolygonCollider2D>();
 		}
 
 		SetColour();
@@ -80,6 +90,22 @@ public class DragScript : MonoBehaviour
 			}
 		}
 
+		// PCCounter = 0;
+
+		foreach (PolygonCollider2D other in PCC)
+		{
+			if (ThisCollider.IsTouching(other))
+			{
+				// PCCounter++;
+				SetBackToSpawnPosition();
+			}
+		}
+
+		// if (PCCounter >= 2)
+		// {
+		// 	SetBackToSpawnPosition();
+		// }
+
 		if (transform.position != new Vector3 (StartXPosition, StartYPosition, 0f))
 		{
 			ThisRigidbody.isKinematic = false;
@@ -101,6 +127,7 @@ public class DragScript : MonoBehaviour
 
 	void SetColour ()
 	{
+		Debug.Log("in color");
 		if (SubjectType == 1)
 		{
 			this.GetComponent<SpriteRenderer>().color = new Color(1f, .125f, 0f, 1f);
