@@ -18,6 +18,15 @@ public class GameManager : MonoBehaviour
 	private int RandomIndex;
 
 	private int[] Evaluated;
+	private float Grade;
+	List <float> Math1;
+	List <float> Lit2;
+	List <float> Fra3;
+	List <float> Hist4;
+	List <float> Phys5;
+	List <float> Inf6;
+	List <float> Chem7;
+	List <float> Geo8;
 
 	public float WeekendTime = 15f;
 	public float WeekTime = 5f;
@@ -32,26 +41,85 @@ public class GameManager : MonoBehaviour
 	{
 		ResetSetUpVariables();
 		DetermineTestsAndHazards(level);
-		DetermineDays(NumberToGenerate);
-		SpawnWeek();
+		DetermineDays(NumberToGenerate);      //How many tests a day
+		SpawnWeek();                          //What kind of tests + spawns Subject prefabs //!!! shuld also spawn week table 
 	}
 
-	// void EndOfDay ()
-	// {
-	// 	for (int i = 0; i < 8; i++)
-	// 	{
-	// 		Evaluated[i] = 0;
-	// 	}
+	void EndOfDay (int dayy)
+	{
+		for (int i = 0; i < 8; i++)
+		{
+			Evaluated[i] = 0;
+		}
 
-	// 	Lessons = GameObject.FindGameObjectsWithTag("Subject");
-	// 	foreach (GameObject subj in Lessons)
-	// 	{
-	// 		if (subj.transform.position != new Vector3(subj.GetComponent<DragScript>().StartXPosition, subj.GetComponent<DragScript>().StartYPosition, subj.transform.position.z)
-	// 		{
-	// 			Evaluated[subj.GetComponent<DragScript>().SubjectType]++;
-	// 		}
-	// 	}
-	// }
+		Lessons = GameObject.FindGameObjectsWithTag("Subject");
+		foreach (GameObject subj in Lessons)
+		{
+			if (subj.transform.position != new Vector3(subj.GetComponent<DragScript>().StartXPosition, subj.GetComponent<DragScript>().StartYPosition, subj.transform.position.z))
+			{
+				Evaluated[subj.GetComponent<DragScript>().SubjectType]++;
+			}
+		}
+
+		for (int i = 0; i < 8; i++)
+		{
+			Grade = 0;
+
+			if ((Evaluated[i] / Tests[dayy, i]) >= 1)
+			{
+				Grade = 5;
+			}
+			else
+			{
+				Grade = Mathf.Round(5 * (Evaluated[i] / Tests[dayy, i]));
+
+				if (Grade < 0)
+				{
+					Grade = 0;
+				}
+			}
+
+			if (i == 1)
+			{
+				Math1.Add(Grade);
+			}
+
+			if (i == 2)
+			{
+				Lit2.Add(Grade);
+			}
+
+			if (i == 3)
+			{
+				Fra3.Add(Grade);
+			}
+
+			if (i == 4)
+			{
+				Hist4.Add(Grade);
+			}
+
+			if (i == 5)
+			{
+				Phys5.Add(Grade);
+			}
+
+			if (i == 6)
+			{
+				Inf6.Add(Grade);
+			}
+
+			if (i == 7)
+			{
+				Chem7.Add(Grade);
+			}
+
+			if (i == 8)
+			{
+				Geo8.Add(Grade);
+			}
+		}
+	}
 
 	void SpawnWeek ()
 	{
@@ -59,7 +127,7 @@ public class GameManager : MonoBehaviour
 		{
 			for (int k = 0; k < day[i]; k++)
 			{
-				Tests[i,Random.Range(0, 7)]++;
+				Tests[i,Random.Range(0, 8)]++;
 			}
 		}
 
@@ -75,6 +143,8 @@ public class GameManager : MonoBehaviour
 			}
 		}
 
+		EndOfNeeded = false;
+
 		for (int c = 0; c < 2; c++)
 		{
 			if (c == 0)
@@ -85,7 +155,6 @@ public class GameManager : MonoBehaviour
 			{
 				Column = -4f;
 			}
-			Debug.Log (Column);
 
 			for (int i = 0; i < 15; i++)
 			{
@@ -96,22 +165,12 @@ public class GameManager : MonoBehaviour
 
 				if (EndOfNeeded)
 				{
-					LessonHandle.GetComponent<DragScript>().SubjectType = Random.Range(0, 7);
+					LessonHandle.GetComponent<DragScript>().SubjectType = Random.Range(0, 8);
 				}
-
-				EndOfNeeded = true;
-				for (int k = 0; k < 8; k++)
+				else
 				{
-					if (max[k] > 0)
-					{
-						EndOfNeeded = false;
-					}
-				}
-
-				if(!EndOfNeeded)
-				{
-					RandomIndex = Random.Range(0, 7);
-					while (max[RandomIndex] != 0)
+					RandomIndex = Random.Range(0, 8);
+					while (max[RandomIndex] == 0)    //FUCKEN INFINITE LOOP
 					{
 						RandomIndex++;
 
@@ -122,6 +181,17 @@ public class GameManager : MonoBehaviour
 					}
 
 					LessonHandle.GetComponent<DragScript>().SubjectType = RandomIndex;
+					max[RandomIndex]--;
+
+					EndOfNeeded = true;
+
+					for (int g = 0; g < 8; g++)
+					{
+						if (max[g] > 0)
+						{
+							EndOfNeeded = false;
+						}
+					}
 				}
 			}
 		}
