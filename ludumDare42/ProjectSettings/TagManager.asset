@@ -11,6 +11,10 @@ TagManager:
   - Indicator
   - Brain
   - PC
+  - inter
+  - fail
+  - vict
+  - intr
   layers:
   - Default
   - TransparentFX
@@ -51,9 +55,27 @@ TagManager:
   - name: Background
     uniqueID: 2268245519
     locked: 0
-  - name: SubjectIndicator
+  - name: clarification
+    uniqueID: 464810947
+    locked: 0
+  - name: lowline
+    uniqueID: 526188085
+    locked: 0
+  - name: line2
+    uniqueID: 3581230591
+    locked: 0
+  - name: line1
     uniqueID: 570412793
+    locked: 0
+  - name: week
+    uniqueID: 2205278157
     locked: 0
   - name: Subjects
     uniqueID: 495620711
+    locked: 0
+  - name: over all
+    uniqueID: 512215839
+    locked: 0
+  - name: overover al
+    uniqueID: 3306651673
     locked: 0

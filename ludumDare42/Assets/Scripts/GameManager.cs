@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 	private int ClosestDivFive;
 	private int[] day;
 	private int[,] Tests;
+	private int RandomIndexForTests;
 	private int[] max;
 	private bool EndOfNeeded = false;
 	private float Column;
@@ -113,7 +114,8 @@ public class GameManager : MonoBehaviour
 		DetermineDays(NumberToGenerate);      //How many tests a day
 		SpawnWeek();                          //What kind of tests + spawns Subject prefabs //!!! shuld also spawn week table 
 
-		CurDay = 1;
+		CurDay = 0;
+		GameObject.Find("HL0").GetComponent<SpriteRenderer>().color = new Color(1f, .125f, 0f, 0.4f);
 		CurTime = 0;
 	}
 
@@ -281,7 +283,19 @@ public class GameManager : MonoBehaviour
 		{
 			for (int k = 0; k < day[i]; k++)
 			{
-				Tests[i,Random.Range(0, 8)]++;
+				RandomIndexForTests = Random.Range(0,8);
+
+				while (Tests[i,RandomIndexForTests] >= 9)
+				{
+					RandomIndexForTests++;
+
+					if (RandomIndexForTests == 8)
+					{
+						RandomIndexForTests = 0;
+					}
+				}
+
+				Tests[i,RandomIndexForTests]++;
 			}
 		}
 
@@ -290,6 +304,7 @@ public class GameManager : MonoBehaviour
 			for (int k = 0; k < 8; k++)
 			{
 				// Debug.Log("Week " + CurentLevel + ". Day " + i + ". we need " + Tests[i,k] + " darab of the type: "+k);
+				GameObject.Find("Number" + (i + 1) + (k + 1)).GetComponent<Evaluator>().Value = Tests[i,k];
 			}
 		}
 
@@ -315,7 +330,7 @@ public class GameManager : MonoBehaviour
 			}
 			else
 			{
-				Column = -4f;
+				Column = -3.5f;
 			}
 
 			for (int i = 0; i < 15; i++)
@@ -506,13 +521,18 @@ public class GameManager : MonoBehaviour
 		{
 			CurTime += Time.deltaTime;
 
-			if ((CurTime >= WeekendTime && CurDay == 1) || (CurTime >= WeekTime && CurDay != 1) || (Input.GetKeyDown(KeyCode.S)))
+			if ((CurTime >= WeekendTime && CurDay == 0) || (CurTime >= WeekTime && CurDay != 0) || (Input.GetKeyDown(KeyCode.S)))
 			{
 				EndOfDay(CurDay);
+				GameObject.Find("HL" + CurDay).GetComponent<SpriteRenderer>().color = new Color (0.9411f, 0.9019f, 0.7843f, 0.4f);
 				CurDay++;
 				if (CurDay >= 5)
 				{
 					EndOfWeek();
+				}
+				else
+				{
+					GameObject.Find("HL" + CurDay).GetComponent<SpriteRenderer>().color = new Color(1f, .125f, 0f, 0.4f);
 				}
 
 				CurTime = 0f;
