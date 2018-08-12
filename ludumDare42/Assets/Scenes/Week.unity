@@ -1243,6 +1243,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f84d93a9eb5e97e4e94a8e8f1ccc0952, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxLevel: 10
+  WeekendTime: 15
+  WeekTime: 5
+  LessonList:
+  - {fileID: 1743924050842896, guid: 58f78cca6087b9d42b4454bb31352a48, type: 2}
+  - {fileID: 1813298839688510, guid: 7507be821d3dca34bbc48cc9993fade0, type: 2}
+  - {fileID: 1308321555927546, guid: 2a5a528ec758e154981842a20812b50b, type: 2}
+  - {fileID: 1576592840413272, guid: 197ca514aabd23344a5349f29e8384f2, type: 2}
+  - {fileID: 1021748290909078, guid: 8d51ba1580b735146ba6ebc7fa188fe8, type: 2}
+  - {fileID: 1869801586941144, guid: b1e00526b391e9440bc3f0c06d333a30, type: 2}
+  - {fileID: 1367152000134808, guid: 32965bc9203e8614383bc0fabf782fc4, type: 2}
+  - {fileID: 1754379788453948, guid: ed8a4b6390d948d4eb49f384141a8e1c, type: 2}
+  - {fileID: 1714975779837268, guid: 3187fc01b6a95c446b56c09be8768000, type: 2}
+  - {fileID: 1985783309877310, guid: 6a6585976b5406748a3cd55dd26de070, type: 2}
+  - {fileID: 1703246331992276, guid: 58578fa0c23a1a34fa2be317fb2ec9ba, type: 2}
+  - {fileID: 1261704400299624, guid: 65628736e42c7794b95c2dbe15610adc, type: 2}
+  - {fileID: 1523911051022420, guid: 8c0b138d6ec9319429dbb00fcf19bf70, type: 2}
+  - {fileID: 1728441725855688, guid: 6ecacbd6558a98640916764f6827f886, type: 2}
+  - {fileID: 1825493474652170, guid: 22e7630af25451e46bdde72a27ddd1d5, type: 2}
+  - {fileID: 1424044146851696, guid: 1293f0f2fd977bf4884773a03c7efb1d, type: 2}
+  - {fileID: 1295655131356434, guid: d500b7a722b2b4a4fa9ef56c104a6a15, type: 2}
+  - {fileID: 1089435321553362, guid: 5e9437e608a748c4eaeaa3a099d3c4b2, type: 2}
+  - {fileID: 1629901962835482, guid: 41cbf86a4793a224195f555a538b8b62, type: 2}
+  - {fileID: 1673949554677238, guid: 83a901088360d874c979a59220dca5b5, type: 2}
+  - {fileID: 1301892462065094, guid: 3ce1f0bce51db9a4a824cb564abee9b4, type: 2}
+  - {fileID: 1192239177663854, guid: 0e948eb6b29c13c4f8b0e337cb6fc8a9, type: 2}
+  - {fileID: 1556975625789990, guid: 261dd21be40fbf84c9e62ae118d0dbb3, type: 2}
+  - {fileID: 1654597307169722, guid: 393cf73d2048fac41ae30aaf10618914, type: 2}
 --- !u!4 &1871815992
 Transform:
   m_ObjectHideFlags: 0

@@ -11,28 +11,120 @@ public class GameManager : MonoBehaviour
 	private int NumberToGenerate;
 	private int ClosestDivFive;
 	private int[] day;
-	// private int index;
+	private int[,] Tests;
+	private int[] max; 
+	private bool EndOfNeeded = false;
+	private float Column;
+	private int RandomIndex;
 
-	private int[] Math;
-	private int[] Lit;
-	private int[] Fra;
-	private int[] Hist;
-	private int[] Phys;
-	private int[] Inf;
-	private int[] Chem;
-	private int[] Geo;
+	private int[] Evaluated;
+
+	public float WeekendTime = 15f;
+	public float WeekTime = 5f;
+	private float CurrTime;
+
+	public GameObject[] LessonList;
+	private GameObject LessonHandle;
+
+	private GameObject[] Lessons;
 
 	void SetUpLevel (int level)
 	{
 		ResetSetUpVariables();
 		DetermineTestsAndHazards(level);
 		DetermineDays(NumberToGenerate);
-		DetermineColour(NumberToGenerate);
+		SpawnWeek();
 	}
 
-	void DetermineColour (int number)
+	// void EndOfDay ()
+	// {
+	// 	for (int i = 0; i < 8; i++)
+	// 	{
+	// 		Evaluated[i] = 0;
+	// 	}
+
+	// 	Lessons = GameObject.FindGameObjectsWithTag("Subject");
+	// 	foreach (GameObject subj in Lessons)
+	// 	{
+	// 		if (subj.transform.position != new Vector3(subj.GetComponent<DragScript>().StartXPosition, subj.GetComponent<DragScript>().StartYPosition, subj.transform.position.z)
+	// 		{
+	// 			Evaluated[subj.GetComponent<DragScript>().SubjectType]++;
+	// 		}
+	// 	}
+	// }
+
+	void SpawnWeek ()
 	{
-		//kisorsolod azt h melyik tantárgy szépen végigmész a listákon s egy a nyolchoz vagy valami okos súlyozás idk
+		for (int i = 1; i < 5; i++)
+		{
+			for (int k = 0; k < day[i]; k++)
+			{
+				Tests[i,Random.Range(0, 7)]++;
+			}
+		}
+
+		for (int k = 0; k < 8; k++)
+		{
+			max[k] = 0;
+			for (int i = 0; i < 5; i++)
+			{
+				if (Tests[i,k] > max[k])
+				{
+					max[k] = Tests[i,k];
+				}
+			}
+		}
+
+		for (int c = 0; c < 2; c++)
+		{
+			if (c == 0)
+			{
+				Column = -7f;
+			}
+			else
+			{
+				Column = -4f;
+			}
+			Debug.Log (Column);
+
+			for (int i = 0; i < 15; i++)
+			{
+				LessonHandle = Instantiate(LessonList[Random.Range(0, 23)], new Vector3(Column, (3.5f - (i * 0.5f)), 0f), Quaternion.identity);
+				LessonHandle.GetComponent<DragScript>().StartXPosition = Column;
+				LessonHandle.GetComponent<DragScript>().StartYPosition = 3.5f - (i * 0.5f);
+				LessonHandle.GetComponent<SpriteRenderer>().sortingOrder = i;
+
+				if (EndOfNeeded)
+				{
+					LessonHandle.GetComponent<DragScript>().SubjectType = Random.Range(0, 7);
+				}
+
+				EndOfNeeded = true;
+				for (int k = 0; k < 8; k++)
+				{
+					if (max[k] > 0)
+					{
+						EndOfNeeded = false;
+					}
+				}
+
+				if(!EndOfNeeded)
+				{
+					RandomIndex = Random.Range(0, 7);
+					while (max[RandomIndex] != 0)
+					{
+						RandomIndex++;
+
+						if (RandomIndex == 8)
+						{
+							RandomIndex = 0;
+						}
+					}
+
+					LessonHandle.GetComponent<DragScript>().SubjectType = RandomIndex;
+				}
+			}
+		}
 	}
 
 	void DetermineDays (int number)
@@ -69,7 +161,6 @@ public class GameManager : MonoBehaviour
 
 		for (int i = 0; i < number; i++)
 		{
-			// index = Random.Range(1, 5);
 			day[Random.Range(1, 5)]++;
 		}
 	}
@@ -80,7 +171,21 @@ public class GameManager : MonoBehaviour
 		{
 			day[i] = 0;
 		}
+
 		IsHazard = false;
+
+		for (int i = 0; i < 5; i++)
+		{
+			for (int k = 0; k < 8; k++)
+			{
+				Tests[i,k] = 0;
+			}
+		}
+
+		for (int i = 0; i < 8; i++)
+		{
+			max[i] = 0;
+		}
 	}
 
 	void DetermineTestsAndHazards (int level)
@@ -92,18 +197,16 @@ public class GameManager : MonoBehaviour
 			{
 				IsHazard = true;
 			}
-
-			NumberToGenerate = Random.Range((level + 9) * 2, (level + 10) *2);
 		}
 
 		if (level == 1)
 		{
-			NumberToGenerate = Random.Range(5, 7);
+			NumberToGenerate = Random.Range(5, 6);
 		}
 
 		if (level == 2)
 		{
-			NumberToGenerate = Random.Range(8, 10);
+			NumberToGenerate = Random.Range(7, 10);
 		}
 
 		if (level == 3)
@@ -113,18 +216,21 @@ public class GameManager : MonoBehaviour
 
 		if (level == 4)
 		{
-			NumberToGenerate = Random.Range(17, 20);
+			NumberToGenerate = Random.Range(15, 17);
 		}
 
-		if (level == 5)
+		if (level >= 5)
 		{
-			NumberToGenerate = Random.Range(23, 29);
+			NumberToGenerate = Random.Range((level + 4) * 2, ((level + 4) * 2) + 1);
 		}
 	}
 
 	void Start () 
 	{
 		day = new int[5];
+		Tests = new int[5,8];
+		max = new int[8];
+		Evaluated = new int[8];
 
 		CurrentLevel = 1;
 		SetUpLevel(CurrentLevel);

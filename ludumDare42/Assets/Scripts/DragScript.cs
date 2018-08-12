@@ -7,8 +7,9 @@ public class DragScript : MonoBehaviour
     private bool dragging = false;
     private float distance;
 
-	public float StartXPosition = -5f;
+	public float StartXPosition = -0f;
 	public float StartYPosition = 0f;
+	public int SubjectType;
 
 	private GameObject[] OFB;
 	private Collider2D[] OFBC;
@@ -53,6 +54,8 @@ public class DragScript : MonoBehaviour
 			OFPC[i] = OFP[i].GetComponent<Collider2D>();
 		}
 
+		SetColour();
+
 		SetBackToSpawnPosition();
 	}
 
@@ -95,4 +98,59 @@ public class DragScript : MonoBehaviour
 	        transform.position = rayPoint;
         }
     }
+
+	void SetColour ()
+	{
+		if (SubjectType == 1)
+		{
+			this.GetComponent<SpriteRenderer>().color = new Color(1f, .125f, 0f, 1f);
+		}
+
+		if (SubjectType == 2)
+		{
+			this.GetComponent<SpriteRenderer>().color = new Color(.537f, .125f, .721f, 1f);
+		}
+
+		if (SubjectType == 3)
+		{
+			this.GetComponent<SpriteRenderer>().color = new Color(0f, .125f, .721f, 1f);
+		}
+
+		if (SubjectType == 4)
+		{
+			this.GetComponent<SpriteRenderer>().color = new Color(0f, .694f, 0f, 1f);
+		}
+
+		if (SubjectType == 5)
+		{
+			this.GetComponent<SpriteRenderer>().color = new Color(1f, .486f, 0f, 1f);
+		}
+
+		if (SubjectType == 6)
+		{
+			this.GetComponent<SpriteRenderer>().color = new Color(.007f, .721f, .004f, 1f);
+		}
+
+		if (SubjectType == 7)
+		{
+			this.GetComponent<SpriteRenderer>().color = new Color(1f, .98f, 0f, 1f);
+		}
+
+		if (SubjectType == 0)
+		{
+			this.GetComponent<SpriteRenderer>().color = new Color(.964f, .129f, .576f, 1f);
+		}
+	}
+
+	public bool IsMemorized ()
+	{
+		if (transform.position.x == StartXPosition && transform.position.y == StartYPosition)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 }

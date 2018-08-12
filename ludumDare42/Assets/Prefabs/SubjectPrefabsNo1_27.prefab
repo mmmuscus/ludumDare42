@@ -23,9 +23,9 @@ GameObject:
   - component: {fileID: 60854935409087114}
   - component: {fileID: 50311548445536366}
   - component: {fileID: 114236349499534044}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SubjectPrefabsNo1_27
-  m_TagString: Untagged
+  m_TagString: Subject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37,8 +37,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1703246331992276}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.622, y: 0.048, z: 0}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
+  m_LocalPosition: {x: -5, y: 0, z: 0}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -50,7 +50,7 @@ Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1703246331992276}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -161,8 +161,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 495620711
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300054, guid: c3f34ce41a04b05439ac26e61777287a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
