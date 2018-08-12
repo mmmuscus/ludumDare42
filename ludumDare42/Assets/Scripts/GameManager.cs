@@ -5,18 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour 
 {
-	public int MaxLevel = 10;
-	private int CurrentLevel;
+	private int MaxLevel = 10;
+	private int CurentLevel;
 	private int LevelHazardChance;
 	private bool IsHazard;
 	private int NumberToGenerate;
 	private int ClosestDivFive;
 	private int[] day;
 	private int[,] Tests;
-	private int[] max; 
+	private int[] max;
 	private bool EndOfNeeded = false;
 	private float Column;
 	private int RandomIndex;
+	private GameObject[] DestroyLastWeekLessons;
 
 	private int[] Evaluated;
 	private int Grade;
@@ -32,11 +33,17 @@ public class GameManager : MonoBehaviour
 	List <int> Chem7;
 	List <int> Geo0;
 
-	public float WeekendTime = 15f;
-	public float WeekTime = 5f;
-	private float CurrTime;
+	private float WeekendTime = 60000f;
+	private float WeekTime = 60000000000000000000000000000f;
+	private float CurTime = 0f;
+	private int CurDay;
 
 	private bool isGameOver = false;
+	private bool isVictory = false;
+	private bool isGame = false;
+	private bool isIntro = true;
+	private bool isIntermission = false;
+	private bool isRetrunPressedInGameThisFrame = false;
 	private GameObject[] SpaceLessons;
 
 	public GameObject[] LessonList;
@@ -44,12 +51,71 @@ public class GameManager : MonoBehaviour
 
 	private GameObject[] Lessons;
 
+	void StartNewGame ()
+	{
+		isGameOver = false;
+		isIntermission = false;
+		isIntro = false;
+		isGame = true;
+
+		CurentLevel = 1;
+		SetUpLevel(CurentLevel);
+	}
+
+	void PlayIntro ()
+	{
+		isGameOver = false;
+		isIntermission = false;
+		isIntro = true;
+		isGame = false;
+
+		Debug.Log("Intro");
+	}
+
+	void PlayInterMission ()
+	{
+		isGameOver = false;
+		isIntermission = true;
+		isIntro = false;
+		isGame = false;
+
+		Debug.Log ("Intermission!");
+	}
+
+	void PlayVictory ()
+	{
+		isGameOver = true;
+		isIntermission = false;
+		isIntro = false;
+		isGame = false;
+
+		Debug.Log("Victory!");
+	}
+
+	void PlayFaliure ()
+	{
+		isGameOver = true;
+		isIntermission = false;
+		isIntro = false;
+		isGame = false;
+
+		Debug.Log("GameOver!");
+	}
+
 	void SetUpLevel (int level)
 	{
+		DestroyLastWeek();
+
+		Debug.Log("level: " + level);
+
 		ResetSetUpVariables();
 		DetermineTestsAndHazards(level);
+		// Debug.Log("ennyi teszt van: " + NumberToGenerate);
 		DetermineDays(NumberToGenerate);      //How many tests a day
 		SpawnWeek();                          //What kind of tests + spawns Subject prefabs //!!! shuld also spawn week table 
+
+		CurDay = 1;
+		CurTime = 0;
 	}
 
 	void EndOfWeek ()
@@ -71,15 +137,54 @@ public class GameManager : MonoBehaviour
 		TemporoaryArray = Geo0.ToArray();
 		LoadTempIntoThisWeek (0);
 
+		Math1 = new List<int>();
+		Lit2 = new List<int>();
+		Fra3 = new List<int>();
+		Hist4 = new List<int>();
+		Phys5 = new List<int>();
+		Inf6 = new List<int>();
+		Chem7 = new List<int>();
+		Geo0 = new List<int>();
+
 		for (int i = 0; i < 8; i++)
 		{
 			AllTime[i,0] += ThisWeek[i,0];
 			AllTime[i,1] += ThisWeek[i,1];
 
-			if(AllTime[i,1] / AllTime[i,0] <= 1.5f)
+			if (AllTime[i,0] != 0)
 			{
-				isGameOver = true;
+				if(AllTime[i,1] / AllTime[i,0] <= 1.5f)
+				{
+					PlayFaliure();
+				}
 			}
+		}
+
+		CurentLevel++;
+		if (CurentLevel > MaxLevel)
+		{
+			isVictory = false;
+			for (int i = 0; i < 8; i++)
+			{
+				if (AllTime[i, 0] != 0)
+				{
+					isVictory = true;
+				}
+			}
+
+			if (isVictory)
+			{
+				PlayVictory();
+			}
+			else
+			{
+				PlayFaliure();
+			}
+		}
+		else
+		{
+			SetUpLevel(CurentLevel);
+			PlayInterMission();
 		}
 	}
 
@@ -110,71 +215,82 @@ public class GameManager : MonoBehaviour
 
 		for (int i = 0; i < 8; i++)
 		{
-			Grade = 0;
-
-			if ((Evaluated[i] / Tests[dayy, i]) >= 1)
+			if (Tests[dayy, i] != 0)
 			{
-				Grade = 5;
-			}
-			else
-			{
-				Grade = (int)Mathf.Round(5 * (Evaluated[i] / Tests[dayy, i]));
-
-				if (Grade < 0)
+				Grade = 0;
+				
+				if ((Evaluated[i] / Tests[dayy, i]) >= 1)
 				{
-					Grade = 0;
+					Grade = 5;
 				}
-			}
+				else
+				{
+					Grade = (int)Mathf.Round(5 * (Evaluated[i] / Tests[dayy, i]));
 
-			if (i == 1)
-			{
-				Math1.Add(Grade);
-			}
+					if (Grade < 0)
+					{
+						Grade = 0;
+					}
+				}
 
-			if (i == 2)
-			{
-				Lit2.Add(Grade);
-			}
+				if (i == 1)
+				{
+					Math1.Add(Grade);
+				}
 
-			if (i == 3)
-			{
-				Fra3.Add(Grade);
-			}
+				if (i == 2)
+				{
+					Lit2.Add(Grade);
+				}
 
-			if (i == 4)
-			{
-				Hist4.Add(Grade);
-			}
+				if (i == 3)
+				{
+					Fra3.Add(Grade);
+				}
 
-			if (i == 5)
-			{
-				Phys5.Add(Grade);
-			}
+				if (i == 4)
+				{
+					Hist4.Add(Grade);
+				}
 
-			if (i == 6)
-			{
-				Inf6.Add(Grade);
-			}
+				if (i == 5)
+				{
+					Phys5.Add(Grade);
+				}
 
-			if (i == 7)
-			{
-				Chem7.Add(Grade);
-			}
+				if (i == 6)
+				{
+					Inf6.Add(Grade);
+				}
 
-			if (i == 0)
-			{
-				Geo0.Add(Grade);
+				if (i == 7)
+				{
+					Chem7.Add(Grade);
+				}
+
+				if (i == 0)
+				{
+					Geo0.Add(Grade);
+				}
 			}
 		}
 	}
 
 	void SpawnWeek ()
 	{
-		for (int i = 1; i < 5; i++)
+		for (int i = 0; i < 5; i++)
 		{
 			for (int k = 0; k < day[i]; k++)
 			{
 				Tests[i,Random.Range(0, 8)]++;
+			}
+		}
+
+		for (int i = 0; i < 5; i++)
+		{
+			for (int k = 0; k < 8; k++)
+			{
+				// Debug.Log("Week " + CurentLevel + ". Day " + i + ". we need " + Tests[i,k] + " darab of the type: "+k);
 			}
 		}
 
@@ -244,6 +360,15 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
+	void DestroyLastWeek ()
+	{
+		DestroyLastWeekLessons = GameObject.FindGameObjectsWithTag("Subject");
+		foreach (GameObject subj in DestroyLastWeekLessons)
+		{
+			Destroy(subj);
+		}
+	}
+
 	void DetermineDays (int number)
 	{
 		if (number % 2 == 1)
@@ -269,6 +394,8 @@ public class GameManager : MonoBehaviour
 			}
 		}
 
+		// Debug.Log("a tesztek felétől fölfelé az első 5tel osztható: " + ClosestDivFive);
+
 		for (int i = 0; i < 5; i++)
 		{
 			day[i] += ClosestDivFive / 5;
@@ -276,9 +403,16 @@ public class GameManager : MonoBehaviour
 
 		number -= ClosestDivFive;
 
+		// Debug.Log("maradék: " + number);
+
 		for (int i = 0; i < number; i++)
 		{
 			day[Random.Range(1, 5)]++;
+		}
+
+		for (int i = 0; i < 5; i++)
+		{
+			// Debug.Log("Ezen a napn összevissza " + day[i] + " darab teszt lesz");
 		}
 	}
 
@@ -338,7 +472,7 @@ public class GameManager : MonoBehaviour
 
 		if (level >= 5)
 		{
-			NumberToGenerate = Random.Range((level + 4) * 2, ((level + 4) * 2) + 1);
+			NumberToGenerate = Random.Range((level + 4) * 2, (level + 5) * 2);
 		}
 	}
 
@@ -350,9 +484,16 @@ public class GameManager : MonoBehaviour
 		Evaluated = new int[8];
 		ThisWeek = new int[8,2];
 		AllTime = new int[8,2];
+		Math1 = new List<int>();
+		Lit2 = new List<int>();
+		Fra3 = new List<int>();
+		Hist4 = new List<int>();
+		Phys5 = new List<int>();
+		Inf6 = new List<int>();
+		Chem7 = new List<int>();
+		Geo0 = new List<int>();
 
-		CurrentLevel = 1;
-		SetUpLevel(CurrentLevel);
+		PlayIntro();
 	}
 
 	void Update ()
@@ -361,19 +502,64 @@ public class GameManager : MonoBehaviour
 		{
 			SceneManager.LoadScene("Main");
 		}
-
-		if (Input.GetKeyDown(KeyCode.Space))
+		
+		if (isGame)
 		{
-			SpaceLessons = GameObject.FindGameObjectsWithTag("Subject");
-			foreach (GameObject subj in SpaceLessons)
+			CurTime += Time.deltaTime;
+
+			if ((CurTime >= WeekendTime && CurDay == 1) || (CurTime >= WeekTime && CurDay != 1) || (Input.GetKeyDown(KeyCode.Return)))
 			{
-				subj.GetComponent<DragScript>().SetBackToSpawnPosition();
+				EndOfDay(CurDay);
+				CurDay++;
+				if (CurDay >= 5)
+				{
+					EndOfWeek();
+				}
+
+				CurTime = 0f;
+
+				if (Input.GetKeyDown(KeyCode.Return))
+				{
+					isRetrunPressedInGameThisFrame = true;
+				}
+			}
+
+			if (Input.GetKeyDown(KeyCode.Space))
+			{
+				SpaceLessons = GameObject.FindGameObjectsWithTag("Subject");
+				foreach (GameObject subj in SpaceLessons)
+				{
+					subj.GetComponent<DragScript>().SetBackToSpawnPosition();
+				}
 			}
 		}
 
-		if (Input.GetKeyDown(KeyCode.Return))
+		if (isIntro)
 		{
-			Debug.Log("WE WILL RETRUN HERE");
+			if (Input.GetKeyDown(KeyCode.Return) && !isRetrunPressedInGameThisFrame)
+			{
+				StartNewGame();
+			}
 		}
+
+		if (isGameOver)
+		{
+			if (Input.GetKeyDown(KeyCode.Return) && !isRetrunPressedInGameThisFrame)
+			{
+				StartNewGame();
+			}
+		}
+
+		if (isIntermission)
+		{
+			if (Input.GetKeyDown(KeyCode.Return) && !isRetrunPressedInGameThisFrame)
+			{
+				isIntermission = false;
+				isGame = true;
+				Debug.Log("End of intermission!");
+			}
+		}
+
+		isRetrunPressedInGameThisFrame = false;
 	}
 }
