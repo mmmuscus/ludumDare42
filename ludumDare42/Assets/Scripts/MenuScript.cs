@@ -5,9 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class MenuScript : MonoBehaviour
 {
+	public Sprite Hover;
+	public Sprite UnHover;
+
 	void OnMouseEnter()
 	{
-		
+		this.GetComponent<SpriteRenderer>().sprite = Hover;
+	}
+
+	void OnMouseExit()
+	{
+		this.GetComponent<SpriteRenderer>().sprite = UnHover;
 	}
 
 	void OnMouseDown()
