@@ -11,10 +11,42 @@ TagManager:
   - Indicator
   - Brain
   - PC
-  - inter
-  - fail
-  - vict
-  - intr
+  - UL1
+  - UL2
+  - UL3
+  - UL4
+  - UL5
+  - UL6
+  - UL7
+  - UL0
+  - ULOA
+  - N1E
+  - 1NE
+  - 2NE
+  - 3NE
+  - 4NE
+  - 5NE
+  - 6NE
+  - 7NE
+  - 0NE
+  - OANE
+  - 1NT
+  - 2NT
+  - 3NT
+  - 4NT
+  - 5NT
+  - 6NT
+  - 7NT
+  - 0NT
+  - OANT
+  - IP
+  - denier
+  - papr
+  - FL
+  - Vt
+  - IMSN
+  - tizesek
+  - egyeseek
   layers:
   - Default
   - TransparentFX

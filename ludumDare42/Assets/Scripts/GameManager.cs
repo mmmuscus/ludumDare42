@@ -38,12 +38,13 @@ public class GameManager : MonoBehaviour
 	private float WeekTime = 10f;
 	private float CurTime = 0f;
 	private int CurDay;
+	private float TimeRemaining;
 
 	private bool isGO = false;
 	private bool isVict = false;
 	private bool isVictory = false;
 	private bool isGame = false;
-	private bool isIntro = true;
+	public bool isIntro = true;
 	private bool isIntermission = false;
 	private GameObject[] SpaceLessons;
 
@@ -52,15 +53,27 @@ public class GameManager : MonoBehaviour
 
 	private GameObject[] Lessons;
 
+	private GameObject[] ULs = new GameObject[8];
+	private SpriteRenderer[] ULSs = new SpriteRenderer[8];
+	private SpriteRenderer[,] Ns = new SpriteRenderer[8,2];
+
 	private float transitionTime = 1f;
-	private float t = 0f;
-	private Vector3 PaperDest = new Vector3 (-0.831527f, 0.8755867f, 0f);
-	private Vector3 IntroDest = new Vector3 (-0.831527f, -9f, 0f);
-	private Vector3 InterDest = new Vector3 (-0.831527f, 11f, 0f);
-	private Vector3 FailDest = new Vector3 (-17.5f, 0.8755867f, 0f);
-	private Vector3 VictDest = new Vector3 (16f, 0.8755867f, 0f);
-	private bool isPaperMovingTo = false;
-	private bool isPaperMovingFrom = false;
+	private float Papert = 0f;
+	public GameObject F1;
+	public GameObject F2;
+	private GameObject F1Handle;
+	private GameObject F2Handle;
+	private bool F1active = false;
+	private bool F2active = false;
+
+	public GameObject Paper;
+	public GameObject IMSSN;
+	public GameObject VTY;
+	public GameObject FAIL;
+	private int Sum;
+	private int Num;
+	private float Average;
+	private bool isFailure = false;
 
 	void StartNewGame ()
 	{
@@ -69,6 +82,14 @@ public class GameManager : MonoBehaviour
 		isIntermission = false;
 		isIntro = false;
 		isGame = true;
+
+		for (int i = 0; i < 8; i++)
+		{
+			for (int k = 0; k < 2; k++)
+			{
+				AllTime[i,k] = 0;
+			}
+		}
 
 		CurentLevel = 1;
 		SetUpLevel(CurentLevel);
@@ -81,21 +102,16 @@ public class GameManager : MonoBehaviour
 		isIntermission = false;
 		isIntro = true;
 		isGame = false;
-		isPaperMovingTo = true;
-
-		Debug.Log("Intro");
 	}
 
 	void PlayInterMission ()
 	{
+		Instantiate(IMSSN);
 		isGO = false;
 		isVict = false;
 		isIntermission = true;
 		isIntro = false;
 		isGame = false;
-		isPaperMovingTo = true;
-
-		Debug.Log ("Intermission!");
 	}
 
 	void PlayVictory ()
@@ -105,9 +121,7 @@ public class GameManager : MonoBehaviour
 		isIntermission = false;
 		isIntro = false;
 		isGame = false;
-		isPaperMovingTo = true;
-
-		Debug.Log("Victory!");
+		Instantiate(VTY);
 	}
 
 	void PlayFaliure ()
@@ -117,20 +131,15 @@ public class GameManager : MonoBehaviour
 		isIntermission = false;
 		isIntro = false;
 		isGame = false;
-		isPaperMovingTo = true;
-
-		Debug.Log("GameOver!");
+		Instantiate(FAIL);
 	}
 
 	void SetUpLevel (int level)
 	{
 		DestroyLastWeek();
 
-		Debug.Log("level: " + level);
-
 		ResetSetUpVariables();
 		DetermineTestsAndHazards(level);
-		// Debug.Log("ennyi teszt van: " + NumberToGenerate);
 		DetermineDays(NumberToGenerate);      //How many tests a day
 		SpawnWeek();                          //What kind of tests + spawns Subject prefabs //!!! shuld also spawn week table 
 
@@ -158,31 +167,75 @@ public class GameManager : MonoBehaviour
 		TemporoaryArray = Geo0.ToArray();
 		LoadTempIntoThisWeek (0);
 
-		Math1 = new List<int>();
-		Lit2 = new List<int>();
-		Fra3 = new List<int>();
-		Hist4 = new List<int>();
-		Phys5 = new List<int>();
-		Inf6 = new List<int>();
-		Chem7 = new List<int>();
-		Geo0 = new List<int>();
+		Math1.Clear();
+		Lit2.Clear();
+		Fra3.Clear();
+		Hist4.Clear();
+		Phys5.Clear();
+		Inf6.Clear();
+		Chem7.Clear();
+		Geo0.Clear();
+
+		Instantiate(Paper);
+
+		isFailure = false;
 
 		for (int i = 0; i < 8; i++)
 		{
 			AllTime[i,0] += ThisWeek[i,0];
 			AllTime[i,1] += ThisWeek[i,1];
 
-			if (AllTime[i,0] != 0)
+			//Debug.Log(i + ". subj sum: " + AllTime[i,0] + " num ber: " + AllTime[i,1]);
+
+			// Average = Alltime[i,0]
+			
+
+			if (AllTime[i,1] != 0)
 			{
-				if(AllTime[i,1] / AllTime[i,0] <= 1.5f)
+				Average = (float)AllTime[i,0] / (float)AllTime[i,1];
+
+				GameObject.FindWithTag(i + "NE").GetComponent<Evaluator>().Value = (int) Mathf.Floor(Average);
+				GameObject.FindWithTag(i + "NT").GetComponent<Evaluator>().Value = (int) Mathf.Round((Average - Mathf.Floor(Average)) * 10);
+
+				if(Average < 1.5f)
 				{
-					PlayFaliure();
+					isFailure = true;
+					GameObject.FindWithTag("UL" + i).GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
 				}
+				// if(AllTime[i,1] / AllTime[i,0] <= 1.5f)
+				// {
+				// 	PlayFaliure();
+				// }
 			}
 		}
 
+		Sum = 0;
+		Num = 0;
+
+		for (int i = 0; i < 8; i++)
+		{
+			Sum += AllTime[i,0];
+			Num += AllTime[i,1];
+		}
+
+		Average = (float)Sum / (float)Num;
+
+		GameObject.FindWithTag("OANE").GetComponent<Evaluator>().Value = (int) Mathf.Floor(Average);
+		GameObject.FindWithTag("OANT").GetComponent<Evaluator>().Value = (int) Mathf.Round((Average - Mathf.Floor(Average)) * 10);
+
+		if(Average < 1.5f)
+		{
+			isFailure = true;
+			GameObject.FindWithTag("ULOA").GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
+		}
+
+		if (isFailure)
+		{
+			PlayFaliure();
+		}
+
 		CurentLevel++;
-		if (CurentLevel > MaxLevel)
+		if (CurentLevel > MaxLevel && isGame)
 		{
 			isVictory = false;
 			for (int i = 0; i < 8; i++)
@@ -204,18 +257,27 @@ public class GameManager : MonoBehaviour
 		}
 		else
 		{
-			SetUpLevel(CurentLevel);
-			PlayInterMission();
+			if (isGame)
+			{
+				SetUpLevel(CurentLevel);
+				PlayInterMission();
+			}
 		}
 	}
 
 	void LoadTempIntoThisWeek (int id)
 	{
+		// Debug.Log("Subject: " + id);
 		ThisWeek[id,1] = TemporoaryArray.Length;
+		// Debug.Log("How many there was this week: " + ThisWeek[id,1]);
+		ThisWeek[id,0] = 0;
 		for (int i = 0; i < TemporoaryArray.Length; i++)
 		{
 			ThisWeek[id,0] += TemporoaryArray[i];
 		}
+		// Debug.Log("And the sum of theese is: " + ThisWeek[id,0]);
+
+		TemporoaryArray = new int[0];
 	}
 
 	void EndOfDay (int dayy)
@@ -240,13 +302,13 @@ public class GameManager : MonoBehaviour
 			{
 				Grade = 0;
 				
-				if ((Evaluated[i] / Tests[dayy, i]) >= 1)
+				if ((float)(Evaluated[i] / (float)Tests[dayy, i]) >= 1)
 				{
 					Grade = 5;
 				}
 				else
 				{
-					Grade = (int)Mathf.Round(5 * (Evaluated[i] / Tests[dayy, i]));
+					Grade = (int)Mathf.Round(5 * (float)(Evaluated[i] / (float)Tests[dayy, i]));
 
 					if (Grade < 0)
 					{
@@ -305,7 +367,7 @@ public class GameManager : MonoBehaviour
 			{
 				RandomIndexForTests = Random.Range(0,8);
 
-				while (Tests[i,RandomIndexForTests] >= 9)
+				while (Tests[i,RandomIndexForTests] >= 10)
 				{
 					RandomIndexForTests++;
 
@@ -323,8 +385,14 @@ public class GameManager : MonoBehaviour
 		{
 			for (int k = 0; k < 8; k++)
 			{
-				// Debug.Log("Week " + CurentLevel + ". Day " + i + ". we need " + Tests[i,k] + " darab of the type: "+k);
-				GameObject.Find("Number" + (i + 1) + (k + 1)).GetComponent<Evaluator>().Value = Tests[i,k];
+				if (k == 0)
+				{
+					GameObject.Find("Number" + (i + 1) + "8").GetComponent<Evaluator>().Value = Tests[i,k];
+				}
+				else
+				{
+					GameObject.Find("Number" + (i + 1) + k).GetComponent<Evaluator>().Value = Tests[i,k];
+				}
 			}
 		}
 
@@ -428,8 +496,6 @@ public class GameManager : MonoBehaviour
 			}
 		}
 
-		// Debug.Log("a tesztek felétől fölfelé az első 5tel osztható: " + ClosestDivFive);
-
 		for (int i = 0; i < 5; i++)
 		{
 			day[i] += ClosestDivFive / 5;
@@ -437,16 +503,9 @@ public class GameManager : MonoBehaviour
 
 		number -= ClosestDivFive;
 
-		// Debug.Log("maradék: " + number);
-
 		for (int i = 0; i < number; i++)
 		{
 			day[Random.Range(1, 5)]++;
-		}
-
-		for (int i = 0; i < 5; i++)
-		{
-			// Debug.Log("Ezen a napn összevissza " + day[i] + " darab teszt lesz");
 		}
 	}
 
@@ -527,12 +586,13 @@ public class GameManager : MonoBehaviour
 		Chem7 = new List<int>();
 		Geo0 = new List<int>();
 
+		StartNewGame();
 		PlayIntro();
 	}
 
 	void Update ()
 	{
-		if (Input.GetKeyDown(KeyCode.Escape))
+		if (Input.GetKeyDown(KeyCode.F))
 		{
 			SceneManager.LoadScene("Main");
 		}
@@ -540,6 +600,26 @@ public class GameManager : MonoBehaviour
 		if (isGame)
 		{
 			CurTime += Time.deltaTime;
+
+			if (CurDay == 0)
+			{
+				TimeRemaining = Mathf.Round(WeekendTime - CurTime);
+			}
+			else
+			{
+				TimeRemaining = Mathf.Round(WeekTime - CurTime);
+			}
+
+			if (TimeRemaining >= 10)
+			{
+				GameObject.FindWithTag("tizesek").GetComponent<Evaluator>().Value = 1;
+				GameObject.FindWithTag("egyeseek").GetComponent<Evaluator>().Value = (int)(TimeRemaining - 10);
+			}
+			else
+			{
+				GameObject.FindWithTag("tizesek").GetComponent<Evaluator>().Value = 0;
+				GameObject.FindWithTag("egyeseek").GetComponent<Evaluator>().Value = (int)TimeRemaining;
+			}
 
 			if ((CurTime >= WeekendTime && CurDay == 0) || (CurTime >= WeekTime && CurDay != 0) || (Input.GetKeyDown(KeyCode.S)))
 			{
@@ -570,131 +650,171 @@ public class GameManager : MonoBehaviour
 
 		if (isIntro)
 		{
-			if (isPaperMovingTo)
+			if (F2active)
 			{
-				t += Time.deltaTime/transitionTime;
-            	GameObject.FindWithTag("intr").transform.position = Vector3.Lerp(IntroDest, PaperDest, t);
-			}
-			
-			if (GameObject.FindWithTag("intr").transform.position == PaperDest)
-			{
-				isPaperMovingTo = false;
-				if (Input.GetKeyDown(KeyCode.Space))
+				Papert += Time.deltaTime;
+				if (Papert >= 1f)
 				{
-					isPaperMovingFrom = true;
-					t = 0;
+					F2Handle.GetComponent<Rigidbody2D>().isKinematic = false;
+				}
+
+				if (F2Handle.transform.position.y <= -8.6f)
+				{
+					isIntro = false;
+					isGame = true;
+					Destroy(F2Handle);
+					F2active = false;
+					Papert = 0;
 				}
 			}
 
-			if (isPaperMovingFrom)
+			if (F1active)
 			{
-				t += Time.deltaTime/transitionTime;
-				GameObject.FindWithTag("intr").transform.position = Vector3.Lerp(PaperDest, IntroDest, t);
+				Papert += Time.deltaTime;
+				if (Papert >= 1f)
+				{
+					F2Handle = Instantiate(F2);
+					Destroy(F1Handle);
+					F1active = false;
+					F2active = true;
+					Papert = 0;
+				}
 			}
 
-			if (GameObject.FindWithTag("intr").transform.position == IntroDest)
+			if (Input.GetKeyDown(KeyCode.Space) && !F1active && !F2active)
 			{
-				isPaperMovingFrom = false;
-				t = 0;
-				StartNewGame();
+				F1Handle = Instantiate(F1);
+				Destroy(GameObject.FindWithTag("IP"));		
+				F1active = true;
+				Papert = 0;
 			}
 		}
 
 		if (isGO)
 		{
-			if (isPaperMovingTo)
+			if (F2active)
 			{
-				t += Time.deltaTime/transitionTime;
-            	GameObject.FindWithTag("fail").transform.position = Vector3.Lerp(FailDest, PaperDest, t);
-			}
-			
-			if (GameObject.FindWithTag("fail").transform.position == PaperDest)
-			{
-				isPaperMovingTo = false;
-				if (Input.GetKeyDown(KeyCode.Space))
+				Papert += Time.deltaTime;
+				if (Papert >= 1f)
 				{
-					isPaperMovingFrom = true;
-					t = 0;
+					F2Handle.GetComponent<Rigidbody2D>().isKinematic = false;
+				}
+
+				if (F2Handle.transform.position.y <= -8.6f)
+				{
+					StartNewGame();
+					Destroy(F2Handle);
+					F2active = false;
+					Papert = 0;
 				}
 			}
 
-			if (isPaperMovingFrom)
+			if (F1active)
 			{
-				t += Time.deltaTime/transitionTime;
-				GameObject.FindWithTag("fail").transform.position = Vector3.Lerp(PaperDest, FailDest, t);
+				Papert += Time.deltaTime;
+				if (Papert >= 1f)
+				{
+					F2Handle = Instantiate(F2);
+					Destroy(F1Handle);
+					F1active = false;
+					F2active = true;
+					Papert = 0;
+				}
 			}
 
-			if (GameObject.FindWithTag("fail").transform.position == FailDest)
+			if (Input.GetKeyDown(KeyCode.Space) && !F1active && !F2active)
 			{
-				isPaperMovingFrom = false;
-				t = 0;
-				StartNewGame();
+				F1Handle = Instantiate(F1);
+				Destroy(GameObject.FindWithTag("FL"));
+				Destroy(GameObject.FindWithTag("papr"));		
+				F1active = true;
+				Papert = 0;
 			}
 		}
 
 		if (isVict)
 		{
-			if (isPaperMovingTo)
+			if (F2active)
 			{
-				t += Time.deltaTime/transitionTime;
-            	GameObject.FindWithTag("vict").transform.position = Vector3.Lerp(VictDest, PaperDest, t);
-			}
-			
-			if (GameObject.FindWithTag("vict").transform.position == PaperDest)
-			{
-				isPaperMovingTo = false;
-				if (Input.GetKeyDown(KeyCode.Space))
+				Papert += Time.deltaTime;
+				if (Papert >= 1f)
 				{
-					isPaperMovingFrom = true;
-					t = 0;
+					F2Handle.GetComponent<Rigidbody2D>().isKinematic = false;
+				}
+
+				if (F2Handle.transform.position.y <= -8.6f)
+				{
+					StartNewGame();
+					Destroy(F2Handle);
+					F2active = false;
+					Papert = 0;
 				}
 			}
 
-			if (isPaperMovingFrom)
+			if (F1active)
 			{
-				t += Time.deltaTime/transitionTime;
-				GameObject.FindWithTag("vict").transform.position = Vector3.Lerp(PaperDest, VictDest, t);
+				Papert += Time.deltaTime;
+				if (Papert >= 1f)
+				{
+					F2Handle = Instantiate(F2);
+					Destroy(F1Handle);
+					F1active = false;
+					F2active = true;
+					Papert = 0;
+				}
 			}
 
-			if (GameObject.FindWithTag("vict").transform.position == VictDest)
+			if (Input.GetKeyDown(KeyCode.Space) && !F1active && !F2active)
 			{
-				isPaperMovingFrom = false;
-				t = 0;
-				StartNewGame();
+				F1Handle = Instantiate(F1);
+				Destroy(GameObject.FindWithTag("papr"));
+				Destroy(GameObject.FindWithTag("Vt"));	
+				F1active = true;
+				Papert = 0;
 			}
 		}
 
 		if (isIntermission)
 		{
-			if (isPaperMovingTo)
+			if (F2active)
 			{
-				t += Time.deltaTime/transitionTime;
-            	GameObject.FindWithTag("inter").transform.position = Vector3.Lerp(InterDest, PaperDest, t);
-			}
-			
-			if (GameObject.FindWithTag("inter").transform.position == PaperDest)
-			{
-				isPaperMovingTo = false;
-				if (Input.GetKeyDown(KeyCode.Space))
+				Papert += Time.deltaTime;
+				if (Papert >= 1f)
 				{
-					isPaperMovingFrom = true;
-					t = 0;
+					F2Handle.GetComponent<Rigidbody2D>().isKinematic = false;
+				}
+
+				if (F2Handle.transform.position.y <= -8.6f)
+				{
+					isIntermission = false;
+					isGame = true;
+					Destroy(F2Handle);
+					F2active = false;
+					Papert = 0;
 				}
 			}
 
-			if (isPaperMovingFrom)
+			if (F1active)
 			{
-				t += Time.deltaTime/transitionTime;
-				GameObject.FindWithTag("inter").transform.position = Vector3.Lerp(PaperDest, InterDest, t);
+				Papert += Time.deltaTime;
+				if (Papert >= 1f)
+				{
+					F2Handle = Instantiate(F2);
+					Destroy(F1Handle);
+					F1active = false;
+					F2active = true;
+					Papert = 0;
+				}
 			}
 
-			if (GameObject.FindWithTag("inter").transform.position == InterDest)
+			if (Input.GetKeyDown(KeyCode.Space) && !F1active && !F2active)
 			{
-				isPaperMovingFrom = false;
-				t = 0;
-				isIntermission = false;
-				isGame = true;
+				F1Handle = Instantiate(F1);
+				Destroy(GameObject.FindWithTag("papr"));
+				Destroy(GameObject.FindWithTag("IMSN"));
+				F1active = true;
+				Papert = 0;
 			}
-		}
+		}	
 	}
 }

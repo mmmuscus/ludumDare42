@@ -24,6 +24,7 @@ public class DragScript : MonoBehaviour
 	private int PCCounter = 0;
 	private PolygonCollider2D ThisCollider;
 	private Rigidbody2D ThisRigidbody;
+	private GameObject GM;
 	
 	public void SetBackToSpawnPosition()
 	{
@@ -53,6 +54,7 @@ public class DragScript : MonoBehaviour
 		PCC = new PolygonCollider2D[PC.Length];
 		PCR = new SpriteRenderer[PC.Length];
 		PCS = new DragScript[PC.Length];
+		GM = GameObject.FindWithTag("GameController");
 
 		for (int i = 0; i < OFB.Length; i++)
 		{
@@ -129,7 +131,7 @@ public class DragScript : MonoBehaviour
  
     void Update()
     {
-        if (dragging && CanBeDragged)
+        if (dragging && CanBeDragged && !GM.GetComponent<GameManager>().isIntro)
         {
 			for (int i = 0; i < PCS.Length; i++)
 			{
