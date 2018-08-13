@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
 	private float CurTime = 0f;
 	private int CurDay;
 	private float TimeRemaining;
+	private float LastTimeRemaining;
 
 	private bool isGO = false;
 	private bool isVict = false;
@@ -282,6 +283,11 @@ public class GameManager : MonoBehaviour
 
 	void EndOfDay (int dayy)
 	{
+		if (dayy != 4)
+		{
+			GameObject.FindWithTag("timer").GetComponent<AudioSource>().Play();
+		}
+
 		for (int i = 0; i < 8; i++)
 		{
 			Evaluated[i] = 0;
@@ -608,6 +614,18 @@ public class GameManager : MonoBehaviour
 			else
 			{
 				TimeRemaining = Mathf.Round(WeekTime - CurTime);
+			}
+
+			if (TimeRemaining != (GameObject.FindWithTag("tizesek").GetComponent<Evaluator>().Value * 10) + GameObject.FindWithTag("egyeseek").GetComponent<Evaluator>().Value)
+			{
+				if (TimeRemaining % 2 == 1)
+				{
+					GameObject.FindWithTag("tizesek").GetComponent<AudioSource>().Play();
+				}
+				else
+				{
+					GameObject.FindWithTag("egyeseek").GetComponent<AudioSource>().Play();
+				}
 			}
 
 			if (TimeRemaining >= 10)

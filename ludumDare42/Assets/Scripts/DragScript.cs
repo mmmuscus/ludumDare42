@@ -25,6 +25,8 @@ public class DragScript : MonoBehaviour
 	private PolygonCollider2D ThisCollider;
 	private Rigidbody2D ThisRigidbody;
 	private GameObject GM;
+
+	private int SortOrder;
 	
 	public void SetBackToSpawnPosition()
 	{
@@ -42,6 +44,8 @@ public class DragScript : MonoBehaviour
 
 	void Start()
 	{
+		SortOrder = this.GetComponent<SpriteRenderer>().sortingOrder;
+
 		ThisCollider = this.GetComponent<PolygonCollider2D>();
 		ThisRigidbody = this.GetComponent<Rigidbody2D>();
 
@@ -88,6 +92,9 @@ public class DragScript : MonoBehaviour
 
     void OnMouseDown()
     {
+		this.GetComponent<AudioSource>().Play();
+		this.GetComponent<SpriteRenderer>().sortingOrder = 16;
+
         distance = Vector3.Distance(transform.position, Camera.main.transform.position);
 
 		dragging = true;
@@ -101,6 +108,9 @@ public class DragScript : MonoBehaviour
  
     void OnMouseUp()
     {
+		GameObject.FindWithTag("MainCamera").GetComponent<AudioSource>().Play();
+		this.GetComponent<SpriteRenderer>().sortingOrder = SortOrder;
+		
         dragging = false;
 		PublicDragging = false;
 

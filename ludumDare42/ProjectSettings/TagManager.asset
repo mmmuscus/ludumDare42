@@ -47,6 +47,7 @@ TagManager:
   - IMSN
   - tizesek
   - egyeseek
+  - timer
   layers:
   - Default
   - TransparentFX

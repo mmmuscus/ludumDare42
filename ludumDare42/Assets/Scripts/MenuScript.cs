@@ -11,6 +11,7 @@ public class MenuScript : MonoBehaviour
 	void OnMouseEnter()
 	{
 		this.GetComponent<SpriteRenderer>().sprite = Hover;
+		this.GetComponent<AudioSource>().Play();
 	}
 
 	void OnMouseExit()
