@@ -113,6 +113,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!95 &268974155 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 95510528932144654, guid: c03fc856c6ff406439e827cd2f864910,
+    type: 2}
+  m_PrefabInternal: {fileID: 1577335435}
 --- !u!1 &315772724
 GameObject:
   m_ObjectHideFlags: 0
@@ -279,6 +284,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Hover: {fileID: 21300044, guid: e65e96bfeee597e4da964f1fcb317bcd, type: 3}
   UnHover: {fileID: 21300074, guid: e65e96bfeee597e4da964f1fcb317bcd, type: 3}
+  animator: {fileID: 268974155}
 --- !u!61 &392900437
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -582,6 +588,52 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1577335435
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4400777415842920, guid: c03fc856c6ff406439e827cd2f864910, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 520.5124
+      objectReference: {fileID: 0}
+    - target: {fileID: 4400777415842920, guid: c03fc856c6ff406439e827cd2f864910, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 351.397
+      objectReference: {fileID: 0}
+    - target: {fileID: 4400777415842920, guid: c03fc856c6ff406439e827cd2f864910, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4400777415842920, guid: c03fc856c6ff406439e827cd2f864910, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4400777415842920, guid: c03fc856c6ff406439e827cd2f864910, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4400777415842920, guid: c03fc856c6ff406439e827cd2f864910, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4400777415842920, guid: c03fc856c6ff406439e827cd2f864910, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4400777415842920, guid: c03fc856c6ff406439e827cd2f864910, type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1307315507348588, guid: c03fc856c6ff406439e827cd2f864910, type: 2}
+      propertyPath: m_Name
+      value: lvlChanger
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c03fc856c6ff406439e827cd2f864910, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &1588964122
 GameObject:
   m_ObjectHideFlags: 0

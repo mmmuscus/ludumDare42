@@ -2919,6 +2919,48 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4355934182604524, guid: f7e66e8217a3255449da8046802bef0e,
     type: 2}
   m_PrefabInternal: {fileID: 534062829}
+--- !u!1001 &584457811
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4400777415842920, guid: c03fc856c6ff406439e827cd2f864910, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 520.5124
+      objectReference: {fileID: 0}
+    - target: {fileID: 4400777415842920, guid: c03fc856c6ff406439e827cd2f864910, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 351.397
+      objectReference: {fileID: 0}
+    - target: {fileID: 4400777415842920, guid: c03fc856c6ff406439e827cd2f864910, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4400777415842920, guid: c03fc856c6ff406439e827cd2f864910, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4400777415842920, guid: c03fc856c6ff406439e827cd2f864910, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4400777415842920, guid: c03fc856c6ff406439e827cd2f864910, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4400777415842920, guid: c03fc856c6ff406439e827cd2f864910, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4400777415842920, guid: c03fc856c6ff406439e827cd2f864910, type: 2}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c03fc856c6ff406439e827cd2f864910, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &588770965
 GameObject:
   m_ObjectHideFlags: 0
@@ -7738,6 +7780,7 @@ MonoBehaviour:
   IMSSN: {fileID: 1411659479438468, guid: e215ff7cd2c22d544a7c5b65715ed0f5, type: 2}
   VTY: {fileID: 1032317323641538, guid: aeae5a78bd3c818458f77f6b17b74af8, type: 2}
   FAIL: {fileID: 1806004924195464, guid: cd4a4b7d1e1039249b16fb9e32f8bce8, type: 2}
+  animator: {fileID: 1987595887}
 --- !u!4 &1871815992
 Transform:
   m_ObjectHideFlags: 0
@@ -8289,6 +8332,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1987595887 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 95510528932144654, guid: c03fc856c6ff406439e827cd2f864910,
+    type: 2}
+  m_PrefabInternal: {fileID: 584457811}
 --- !u!1 &1992349462
 GameObject:
   m_ObjectHideFlags: 0

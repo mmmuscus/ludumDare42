@@ -76,6 +76,8 @@ public class GameManager : MonoBehaviour
 	private float Average;
 	private bool isFailure = false;
 
+	public Animator animator;
+
 	void StartNewGame ()
 	{
 		isGO = false;
@@ -600,7 +602,7 @@ public class GameManager : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.F))
 		{
-			SceneManager.LoadScene("Main");
+			animator.SetTrigger("fadeOUT");
 		}
 		
 		if (isGame)

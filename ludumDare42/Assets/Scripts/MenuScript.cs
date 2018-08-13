@@ -8,6 +8,8 @@ public class MenuScript : MonoBehaviour
 	public Sprite Hover;
 	public Sprite UnHover;
 
+	public Animator animator;
+
 	void OnMouseEnter()
 	{
 		this.GetComponent<SpriteRenderer>().sprite = Hover;
@@ -21,6 +23,8 @@ public class MenuScript : MonoBehaviour
 
 	void OnMouseDown()
 	{
-		SceneManager.LoadScene("Week");
+		animator.SetTrigger("fadeOUT");
+		this.GetComponent<BoxCollider2D>().enabled = false;
+		// SceneManager.LoadScene("Week");
 	}
 }
