@@ -90,16 +90,27 @@ public class DragScript : MonoBehaviour
 		SetBackToSpawnPosition();
 	}
 
+	void OnMouseEnter()
+	{
+		// Debug.Log("hy my name is " + this.name + " and i have a mouse over me currently");
+		// PublicDragging = true;
+	}
+
+	void OnMouseLeave()
+	{
+		// PublicDragging = false;
+	}
+
     void OnMouseDown()
     {
 		this.GetComponent<AudioSource>().Play();
-		this.GetComponent<SpriteRenderer>().sortingOrder = 16;
 
         distance = Vector3.Distance(transform.position, Camera.main.transform.position);
 
 		dragging = true;
-		PublicDragging = true;
+		// PublicDragging = true;
 		CanBeDragged = true;
+		Debug.Log("hy my name is " + this.name + " and i am draggable currently");
 
 		ThisCollider.isTrigger = true;
 
@@ -112,7 +123,7 @@ public class DragScript : MonoBehaviour
 		this.GetComponent<SpriteRenderer>().sortingOrder = SortOrder;
 		
         dragging = false;
-		PublicDragging = false;
+		// PublicDragging = false;
 
 		foreach (Collider2D other in OFBC)
 		{
@@ -141,33 +152,62 @@ public class DragScript : MonoBehaviour
  
     void Update()
     {
-        if (dragging && CanBeDragged && !GM.GetComponent<GameManager>().isIntro)
-        {
+        // if (dragging && CanBeDragged && !GM.GetComponent<GameManager>().isIntro)
+        // {
+		// 	for (int i = 0; i < PCS.Length; i++)
+		// 	{
+		// 		if (PCS[i].PublicDragging && (PCR[i].sortingOrder > this.GetComponent<SpriteRenderer>().sortingOrder))
+		// 		{
+		// 			CanBeDragged = false;
+		// 		}
+		// 	}
+
+		// 	if (CanBeDragged)
+		// 	{
+		// 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		// 		Vector3 rayPoint = ray.GetPoint(distance);
+	    // 		transform.position = rayPoint;
+
+		// 		if (Input.GetKey(KeyCode.A)) 
+		// 		{
+   		// 	    	transform.Rotate(Vector3.forward * 3f);
+		// 		}
+
+		// 		if (Input.GetKey(KeyCode.D)) 
+		// 		{
+   	    // 			transform.Rotate(Vector3.back * 3f);
+   		//  	}
+		// 	}
+        // }
+
+		if (CanBeDragged && !GM.GetComponent<GameManager>().isIntro)
+		{
 			for (int i = 0; i < PCS.Length; i++)
 			{
 				if (PCS[i].PublicDragging && (PCR[i].sortingOrder < this.GetComponent<SpriteRenderer>().sortingOrder))
 				{
 					CanBeDragged = false;
+					dragging = false;
 				}
 			}
+		}
 
-			if (CanBeDragged)
+		if(dragging)
+		{
+			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+			Vector3 rayPoint = ray.GetPoint(distance);
+	    	transform.position = rayPoint;
+
+			if (Input.GetKey(KeyCode.A)) 
 			{
-				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-				Vector3 rayPoint = ray.GetPoint(distance);
-	    		transform.position = rayPoint;
-
-				if (Input.GetKey(KeyCode.A)) 
-				{
-   			    	transform.Rotate(Vector3.forward * 3f);
-				}
-
-				if (Input.GetKey(KeyCode.D)) 
-				{
-   	    			transform.Rotate(Vector3.back * 3f);
-   		 		}
+   			 	transform.Rotate(Vector3.forward * 3f);
 			}
-        }
+
+			if (Input.GetKey(KeyCode.D)) 
+			{
+   	    		transform.Rotate(Vector3.back * 3f);
+   		 	}
+		}
     }
 
 	void SetColour ()
